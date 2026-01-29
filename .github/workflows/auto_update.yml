@@ -24,7 +24,7 @@ jobs:
         run: node update.js # 执行你的抓取脚本
 
       - name: Commit and Push changes
-       run: |
+        run: |
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions[bot]"
           git add anime_data.json
