@@ -125,7 +125,7 @@
             
             // 添加出处按钮
             const originFilter = document.getElementById('origin-filter');
-            const originBtns = Array.from(origins).sort();
+            const originBtns = Array.from(origins);
             originBtns.forEach(origin => {
                 const btn = document.createElement('button');
                 btn.className = 'filter-btn';
@@ -137,7 +137,7 @@
             // 添加标签按钮
             const tagFilter = document.getElementById('tag-filter');
             const displayTags = Array.from(new Set([...origins,...tags]));
-            const tagBtns = Array.from(tags).sort();
+            const tagBtns = Array.from(tags);
             tagBtns.forEach(tag => {
                 const btn = document.createElement('button');
                 btn.className = 'filter-btn';
