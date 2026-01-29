@@ -26,7 +26,8 @@ jobs:
       - name: Commit and Push changes
         run: |
           git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.name "github-actions[bot]"
+          git pull --rebase origin main # 关键：先拉取本地最新代码进行合并
           git add anime_data.json
-          git commit -m "chore: 自动更新番剧评分" || exit 0 # 如果没变化就跳过
-          git push
+          git commit -m "chore: 自动更新番剧评分" || exit 0
+          git push origin main

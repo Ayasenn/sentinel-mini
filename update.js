@@ -6,7 +6,16 @@ const UA = 'Ayasen-Anime-Sentinel/1.0'; // 规范的 User-Agent 避免被封
 async function updateAll() {
     try {
         const rawData = fs.readFileSync(FILE_NAME, 'utf8');
-        let animeList = JSON.parse(rawData);
+        let json = JSON.parse(rawData);
+        
+        // 智能识别数据格式：如果已经包装过，提取 items；否则直接使用
+        let animeList = Array.isArray(json) ? json : (json.items || json);
+        
+        // 确保 animeList 是数组
+        if (!Array.isArray(animeList)) {
+            console.error('❌ 数据格式错误：无法找到番剧数组');
+            return;
+        }
 
         console.log(`📡 正在为 ${animeList.length} 部番剧同步最新情报...`);
 
