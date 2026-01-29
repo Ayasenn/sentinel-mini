@@ -1,0 +1,2834 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>2026 年 1月 新番导视</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 新增控制栏样式 */
+        header { display: flex; flex-direction: column; gap: 15px; }
+        header h1 { margin: 0; }
+        header .header-bottom { display: flex; flex-direction: column; gap: 15px; }
+        .controls { display: flex; flex-direction: column; gap: 15px; padding: 20px; background: var(--card); border-radius: 12px; }
+        .controls > div { text-align: left; }
+        .controls strong { display: block; margin-bottom: 8px; }
+        .filter-group { display: flex; flex-wrap: wrap; gap: 8px; }
+        .filter-btn { padding: 6px 14px; border: none; background: #334155; color: #94a3b8; border-radius: 6px; cursor: pointer; transition: 0.2s; }
+        .filter-btn.active { background: var(--accent); color: var(--bg); font-weight: bold; }
+        .sort-group { display: flex; justify-content: flex-end; }
+        .sort-group select { padding: 8px; background: var(--card); color: white; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; cursor: pointer; }
+        .summary { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            header { gap: 12px; }
+            header h1 { font-size: 1.8rem; }
+            header .header-bottom { gap: 12px; }
+            .controls { gap: 12px; padding: 15px; }
+            .controls > div { margin-bottom: 0; }
+            .controls strong { margin-bottom: 6px; font-size: 0.95rem; }
+            .filter-group { gap: 6px; }
+            .filter-btn { padding: 5px 10px; font-size: 0.85rem; }
+            .sort-group select { padding: 6px; font-size: 0.9rem; }
+        }
+        
+        @media (max-width: 480px) {
+            body { padding: 1rem; }
+            header h1 { font-size: 1.5rem; }
+            .controls { gap: 10px; padding: 12px; }
+            .controls strong { font-size: 0.9rem; }
+            .filter-btn { padding: 4px 8px; font-size: 0.8rem; }
+            .filter-group { gap: 5px; }
+            .sort-group select { width: 100%; padding: 6px; font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>2026 年 1 月 新番导视</h1>
+            <div class="header-bottom">
+                <div class="controls">
+                    <div>
+                        <strong>出处筛选</strong>
+                        <div class="filter-group" id="origin-filter">
+                            <button class="filter-btn active" data-filter="all">全部</button>
+                            <button class="filter-btn" data-filter="动画">动画</button><button class="filter-btn" data-filter="原创">原创</button><button class="filter-btn" data-filter="游戏改">游戏改</button><button class="filter-btn" data-filter="漫画改">漫画改</button><button class="filter-btn" data-filter="轻小说改">轻小说改</button>
+                        </div>
+                    </div>
+                    <div>
+                        <strong>标签筛选</strong>
+                        <div class="filter-group" id="tag-filter">
+                            <button class="filter-btn active" data-filter="all">全部</button>
+                            <button class="filter-btn" data-filter="BL">BL</button><button class="filter-btn" data-filter="TV">TV</button><button class="filter-btn" data-filter="WEB">WEB</button><button class="filter-btn" data-filter="冒险">冒险</button><button class="filter-btn" data-filter="剧情">剧情</button><button class="filter-btn" data-filter="动态漫画">动态漫画</button><button class="filter-btn" data-filter="原创">原创</button><button class="filter-btn" data-filter="后宫">后宫</button><button class="filter-btn" data-filter="喜剧">喜剧</button><button class="filter-btn" data-filter="奇幻">奇幻</button><button class="filter-btn" data-filter="子供向">子供向</button><button class="filter-btn" data-filter="小说改">小说改</button><button class="filter-btn" data-filter="少女向">少女向</button><button class="filter-btn" data-filter="少年向">少年向</button><button class="filter-btn" data-filter="恋爱">恋爱</button><button class="filter-btn" data-filter="悬疑">悬疑</button><button class="filter-btn" data-filter="战斗">战斗</button><button class="filter-btn" data-filter="日常">日常</button><button class="filter-btn" data-filter="日本">日本</button><button class="filter-btn" data-filter="校园">校园</button><button class="filter-btn" data-filter="游戏改">游戏改</button><button class="filter-btn" data-filter="漫画改">漫画改</button><button class="filter-btn" data-filter="百合">百合</button><button class="filter-btn" data-filter="科幻">科幻</button><button class="filter-btn" data-filter="美食">美食</button><button class="filter-btn" data-filter="运动">运动</button><button class="filter-btn" data-filter="青年向">青年向</button><button class="filter-btn" data-filter="音乐">音乐</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="sort-group">
+                    <select id="sort-select">
+                        <option value="wish">按关注度 (想看人数)</option>
+                        <option value="score">按评分排序</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <main class="anime-grid">
+            
+    <div class="card" 
+         data-wish="278" 
+         data-score="5.6"
+         data-origin="漫画改"
+         data-tags="漫画改|科幻|TV|日本|战斗">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/1c/94/426100_viPSH.jpg" loading="lazy" alt="枪神 观星之人">
+            <div class="score-badge">★ 5.6</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="枪神 观星之人">
+                <span class="title-cn">枪神 观星之人</span>
+                <span class="title-jp">TRIGUN STARGAZE</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月10日</span>
+                <span>🔥 278 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 佐藤雅子</p>
+                
+                <p><strong>主题歌演出:</strong> ano(あの) / FOMARE</p>
+            </div>
+
+            <p class="summary">最終話の放送ではヴァッシュとナイヴズの正義がぶつかり合い、クライマックスを迎えました。  そして、待望のシリーズ完結編の製作決定もあわせて発表。儒來消失の犯人としてヴァッシュ・ザ・スタンピードの懸賞金は生死不問600億$$へと引き上げられ、「人間台風（ヒューマノイド・タイフーン）」は消息不明に。  惑星を震わす物語、『TRIGUN STAMPEDE』に引き続き、どうぞご期待ください！...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">科幻</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">战斗</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=TRIGUN%20STARGAZE%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://trigun-anime.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/426100" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="706" 
+         data-score="7.4"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本|战斗|冒险">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/7c/f1/443106_b4QP3.jpg" loading="lazy" alt="黄金神威 最终章">
+            <div class="score-badge">★ 7.4</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="黄金神威 最终章">
+                <span class="title-cn">黄金神威 最终章</span>
+                <span class="title-jp">ゴールデンカムイ 最終章</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月5日</span>
+                <span>🔥 706 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 菅原静貴</p>
+                <p><strong>音乐:</strong> 末廣健一郎</p>
+                <p><strong>主题歌演出:</strong> Awich×ALI / Ken Yokoyama</p>
+            </div>
+
+            <p class="summary">杉元とアシリパの旅はクライマックスへ!! アイヌから奪われた金塊を巡る生存競争サバイバル、最終章に突入ッッ!!!  樺太から北海道に帰還した「不死身の杉元」こと杉元佐ーとアイヌの少女・アシリパは、白石由竹と共に再び金塊探しの旅を開始。  その最中に遭遇した脱獄囚の海賊房太郎と手を結んだのち、新たな標的とした脱獄囚の上工地圭二が向かったと思われる札幌を目指す。 一方、杉元とアシリパの逃亡を許した第七師団の鶴見中尉は、金塊の謎を解く鍵を握るアシリパの捜索と並行して刺青人皮の収集を継続。 札幌で発生した連続娼婦殺害事件の犯人を脱獄囚とにらんで菊田特務曹長と宇佐美上等兵を派遣するが、時を同じくして、新撰組「鬼の副長」土方歳三の一味も同じ思惑で行動を起こしていた。  金塊の争奪戦を繰り広げる3つの勢力が札幌で相まみえたとき、事態が大きく動くことは必至! 北の大地を舞台にいよいよ佳境を迎える一攫千金サバイバルの行く末を、しかとその目に焼き付けよ!!...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">战斗</span><span class="tag meta-tag">冒险</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E3%82%B4%E3%83%BC%E3%83%AB%E3%83%87%E3%83%B3%E3%82%AB%E3%83%A0%E3%82%A4%20%E6%9C%80%E7%B5%82%E7%AB%A0%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://www.kamuy-anime.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/443106" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="984" 
+         data-score="6.6"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本|奇幻|战斗">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/f9/83/443446_S2n61.jpg" loading="lazy" alt="地狱乐 第二季">
+            <div class="score-badge">★ 6.6</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="地狱乐 第二季">
+                <span class="title-cn">地狱乐 第二季</span>
+                <span class="title-jp">地獄楽 第二期</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月11日</span>
+                <span>🔥 984 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 牧田佳織</p>
+                <p><strong>音乐:</strong> 出羽良彰</p>
+                <p><strong>主题歌演出:</strong> キタニタツヤ feat. BABYMETAL / 女王蜂</p>
+            </div>
+
+            <p class="summary">仙薬の手がかりを求め、 島を統べる化物"天仙"の居城に着いた一行。 島からの生還には、もはや死罪人も執行人も 関係なく協力が不可欠だった。 一方で、幕府は“山田浅ェ門殊現”を筆頭に 神仙郷への追加上陸を命じていた。 そこには、画眉丸と因縁のある 石隠れ衆の姿も。 一刻も早く仙薬を見つけて島から脱出しよう とする画眉丸たちだったが、 彼らの前に天仙たちが立ち塞がる。 仙薬を巡る戦いは“人間”と“天仙”の 全面対決に突入する——!!...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">奇幻</span><span class="tag meta-tag">战斗</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E5%9C%B0%E7%8D%84%E6%A5%BD%20%E7%AC%AC%E4%BA%8C%E6%9C%9F%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://www.jigokuraku.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/443446" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="3153" 
+         data-score="7.7"
+         data-origin="轻小说改"
+         data-tags="轻小说改|TV|日本|奇幻|战斗|小说改">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/f0/51/443831_84ZQs.jpg" loading="lazy" alt="Fate/strange Fake">
+            <div class="score-badge">★ 7.7</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="Fate/strange Fake">
+                <span class="title-cn">Fate/strange Fake</span>
+                <span class="title-jp">Fate/strange Fake</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月3日</span>
+                <span>🔥 3153 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 榎戸駿・坂詰嵩仁</p>
+                <p><strong>音乐:</strong> 澤野弘之</p>
+                <p><strong>主题歌演出:</strong> SawanoHiroyuki[nZk]: Jean-Ken Johnny & TAKUMA / 13.3g</p>
+            </div>
+
+            <p class="summary">魔术师〈Master〉与英灵〈Servant〉为了争夺能实现一切愿望的愿望机「圣杯」，而彼此厮杀——这便是「圣杯战争」。  在日本进行的第五次圣杯战争落下帷幕的几年之后。 在美利坚合众国西部的城市——雪原市（Snowfield），观测到了新圣杯即将出现的征兆。 于是魔术师〈Master〉与英灵〈Servant〉们纷纷集结于此地——  缺失的职阶。 本不该被选中的从者。 在暗处操盘的国家势力。 为战争而建造的城市。 ——由于无数的异常状况（Irregular），「圣杯战争」逐渐走向失控，局势愈发混沌扭曲。  在伪圣杯的祭坛之上共舞，人类与英灵〈Servant〉的饗宴就此拉开帷幕。...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">轻小说改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">奇幻</span><span class="tag meta-tag">战斗</span><span class="tag meta-tag">小说改</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=Fate%2Fstrange%20Fake%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://fate-strange-fake.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/443831" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="1468" 
+         data-score="6.7"
+         data-origin="轻小说改"
+         data-tags="轻小说改|TV|日本|奇幻|战斗|小说改">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/7f/9b/445905_M0j2M.jpg" loading="lazy" alt="判处勇者刑 惩罚勇者9004队刑务纪录">
+            <div class="score-badge">★ 6.7</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="判处勇者刑 惩罚勇者9004队刑务纪录">
+                <span class="title-cn">判处勇者刑 惩罚勇者9004队刑务纪录</span>
+                <span class="title-jp">勇者刑に処す 懲罰勇者9004隊刑務記録</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月3日</span>
+                <span>🔥 1468 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 高嶋宏之</p>
+                <p><strong>音乐:</strong> 滝澤俊輔 (TRYTONELABO)</p>
+                
+            </div>
+
+            <p class="summary">勇者，是这世上最残酷的刑罚。犯下大罪之人，将被判处成为「勇者」，被迫投入与魔王的战争之中。即便被杀，也会被强制复活，连死亡都不被允许。 被施以勇者刑的前圣骑士团长赛罗．佛鲁巴兹，率领着一支由性格扭曲的罪人所组成的勇者惩罚部队，奔驰于战场最前线。在这残酷环境之中，赛罗遇见了最强的生物兵器之一剑之《女神》泰奥莉塔。 「等你歼灭所有敌人之后，要好好赞美我…然后摸摸我的头。」 为了活下去，也为了向陷害自己的人复仇── 与《女神》缔结契约的赛罗，毅然投身于这绝望世界中的激烈战火与阴谋漩涡之中！  勇者とは、この世で最悪の刑罰である。大罪を犯した者が「勇者」となり、魔王と戦う刑罰を科されるのだ。殺されようとも蘇生され、死ぬことすら許されない。勇者刑に処された元聖騎士団長のザイロ・フォルバーツは、性格破綻者たちで構成された懲罰勇者部隊を率い、戦いの最前線を駆け抜けていた。過酷な状況の中、ザイロは最強の生体兵器の一人、《剣の女神》テオリッタに出会う。「敵を殲滅した暁には、この私を褒め讃え……そして頭を撫でなさい」生き抜くため、自らを陥れた者へ復讐を果たすため──。《女神》と契約を交わしたザイロは、絶望的な世界で熾烈な闘争と陰謀の渦中に身を投じていく。...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">轻小说改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">奇幻</span><span class="tag meta-tag">战斗</span><span class="tag meta-tag">小说改</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E5%8B%87%E8%80%85%E5%88%91%E3%81%AB%E5%87%A6%E3%81%99%20%E6%87%B2%E7%BD%B0%E5%8B%87%E8%80%859004%E9%9A%8A%E5%88%91%E5%8B%99%E8%A8%98%E9%8C%B2%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://yushakei-pj.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/445905" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="1486" 
+         data-score="7.4"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本|奇幻|战斗">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/ab/77/472741_MqsB8.jpg" loading="lazy" alt="咒术回战 死灭回游 前篇">
+            <div class="score-badge">★ 7.4</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="咒术回战 死灭回游 前篇">
+                <span class="title-cn">咒术回战 死灭回游 前篇</span>
+                <span class="title-jp">呪術廻戦 死滅回游 前編</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月8日</span>
+                <span>🔥 1486 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 御所園翔太</p>
+                <p><strong>音乐:</strong> 照井順政</p>
+                <p><strong>主题歌演出:</strong> King Gnu / jo0ji</p>
+            </div>
+
+            <p class="summary">2018年10月31日。 ハロウィンで賑わう渋谷駅周辺に突如“帳”が降ろされ大勢の一般人が閉じ込められる。 そこに単独で乗り込む現代最強の呪術師・五条悟。だが、そこには五条の封印を目論む呪詛師・呪霊達が待ち構えていた。 渋谷に集結する虎杖悠仁ら、数多くの呪術師たち。 かつてない大規模な呪い合い「渋谷事変」が始まる―。  そして戦いは、史上最悪の術師・加茂憲倫が仕組んだ殺し合い「死滅回游」へ。  「渋谷事変」を経て、魔窟と化す全国10の結界コロニー。 そんな大混乱の最中、虎杖の死刑執行役として特級術師・乙骨憂太が立ちはだかる。  絶望の中で、なおも戦い続ける虎杖。 無情にも、刃を向ける乙骨。  加速していく呪いの混沌。 同じ師を持つ虎杖と乙骨、二人の死闘が始まる——...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">奇幻</span><span class="tag meta-tag">战斗</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E5%91%AA%E8%A1%93%E5%BB%BB%E6%88%A6%20%E6%AD%BB%E6%BB%85%E5%9B%9E%E6%B8%B8%20%E5%89%8D%E7%B7%A8%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://jujutsukaisen.jp/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/472741" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="587" 
+         data-score="6.2"
+         data-origin="漫画改"
+         data-tags="漫画改|日本|WEB">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/d7/47/485990_3k38b.jpg" loading="lazy" alt="动物狂想曲 最终季 第二部分">
+            <div class="score-badge">★ 6.2</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="动物狂想曲 最终季 第二部分">
+                <span class="title-cn">动物狂想曲 最终季 第二部分</span>
+                <span class="title-jp">BEASTARS FINAL SEASON Part2</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年3月</span>
+                <span>🔥 587 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 松見真一</p>
+                
+                
+            </div>
+
+            <p class="summary">暂无简介...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">WEB</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=BEASTARS%20FINAL%20SEASON%20Part2%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://bst-animation.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/485990" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="1577" 
+         data-score="6.5"
+         data-origin="漫画改"
+         data-tags="漫画改|后宫|TV|日本|战斗">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/d9/61/486054_Hl0Cx.jpg" loading="lazy" alt="魔都精兵的奴隶 第二季">
+            <div class="score-badge">★ 6.5</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="魔都精兵的奴隶 第二季">
+                <span class="title-cn">魔都精兵的奴隶 第二季</span>
+                <span class="title-jp">魔都精兵のスレイブ2</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月8日</span>
+                <span>🔥 1577 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 田村正文</p>
+                <p><strong>音乐:</strong> KOHTA YAMAMOTO</p>
+                <p><strong>主题歌演出:</strong> 鬼頭明里 / 花澤香菜[ED1]、内田真礼[ED2]</p>
+            </div>
+
+            <p class="summary">日本各地に、突如として謎の門が出現。 その先の異空間『魔都』には女性にのみ食べた者に特異な能力をもたらす桃が存在し、『醜鬼』と呼ばれる怪物を退治するため、女性兵による戦闘集団『魔防隊』が組織された。  活躍できる場所を求めていた男子高校生・和倉優希はある日、魔都へと迷い込むと醜鬼に襲われてしまう。 そこへ駆けつけたのは魔防隊七番組の美しき組長・羽前京香。 京香の能力で奴隷（スレイブ）と化した優希は力を開花させ、醜鬼を見事打ち倒し、奴隷 兼 魔防隊の管理人として醜鬼と戦うことに。  “飼われる少年”のバトルファンタジー、ここに開幕！...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">后宫</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">战斗</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E9%AD%94%E9%83%BD%E7%B2%BE%E5%85%B5%E3%81%AE%E3%82%B9%E3%83%AC%E3%82%A4%E3%83%962%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://mabotai.jp/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/486054" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="803" 
+         data-score="7.2"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本|奇幻|日常|美食">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/13/79/486763_s49V9.jpg" loading="lazy" alt="公主大人“拷问”的时间到了 第二季">
+            <div class="score-badge">★ 7.2</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="公主大人“拷问”的时间到了 第二季">
+                <span class="title-cn">公主大人“拷问”的时间到了 第二季</span>
+                <span class="title-jp">姫様“拷問”の時間です 第2期</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月12日</span>
+                <span>🔥 803 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 金森陽子</p>
+                <p><strong>音乐:</strong> 横山克</p>
+                <p><strong>主题歌演出:</strong> ILLIT / 『ユイカ』</p>
+            </div>
+
+            <p class="summary">国王军与魔王军展开冲突已有数载。既是王女也是国王军第三骑士团「骑士团长」的公主，如今成为了魔王军的阶下囚。魔王军为了得到国王军的机密而「拷问」被囚禁于魔王军的国王军公主。 「公主殿下，『拷问』的时间到了。」 在牢中遭到监禁的公主面前，是一连串让人全身扭曲的「拷问」……软绵绵、热乎乎的现烤吐司！热气蒸腾的深夜拉面！与可爱到让人受不了的小动物们玩耍的时光！在一个接一个美味的餐点＆开心的游玩面前步步受逼的公主，究竟能否继续战胜新的「拷问」，并守住王国剩下的秘密呢！？ 让所有人都露出笑容、全世界最温柔的「拷问」奇幻动画，继续上演！    [简介原文] 国王軍と魔王軍が衝突をはじめ、幾年月。 王女にして、国王軍第三騎士団“騎士団長”である姫は、魔王軍によって囚われの身となっていた。 「姫様“拷問”の時間です」監禁された姫を待ち受けていたのは、身悶えるような“拷問”の数々……。 ほわほわの焼きたてトースト！湯気がたちのぼる深夜のラーメン！ 愛くるしい動物たちと遊ぶ時間！ 美味しい食事＆楽しい遊びを容赦なく突きつけられた姫は、 “拷問”に打ち勝ち王国の秘密を守り抜くことができるのか！？ 誰もが笑顔になれる世界一やさしい“拷問”ファンタジーアニメ開幕！...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">奇幻</span><span class="tag meta-tag">日常</span><span class="tag meta-tag">美食</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E5%A7%AB%E6%A7%98%E2%80%9C%E6%8B%B7%E5%95%8F%E2%80%9D%E3%81%AE%E6%99%82%E9%96%93%E3%81%A7%E3%81%99%20%E7%AC%AC2%E6%9C%9F%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://himesama-goumon.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/486763" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="1147" 
+         data-score="7.9"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本|日常">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/fe/bf/493016_Qqmf5.jpg" loading="lazy" alt="异国日记">
+            <div class="score-badge">★ 7.9</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="异国日记">
+                <span class="title-cn">异国日记</span>
+                <span class="title-jp">違国日記</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月4日</span>
+                <span>🔥 1147 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 大城美幸</p>
+                <p><strong>音乐:</strong> 牛尾憲輔</p>
+                <p><strong>主题歌演出:</strong> TOMOO / Bialystocks</p>
+            </div>
+
+            <p class="summary">怕生内向的小说家高代槙生，在姐姐夫妻的葬礼上，一时冲动收养了失去双亲的外甥女田汲朝。这段意想不到开始的同居生活，让原本宁静的槙生日常彻底改变。 因为不习惯和别人一起生活，她对与15岁的朝同住一事充满不安。另一方面，失去双亲、失去了自己立足之处的朝，在第一次体会到的孤独当中，逐渐接触到和母亲完全不同、「不像大人的大人」的槙生那种活法。 在人际应对上很不在行、反而喜欢孤独一人的槙生，以及个性亲人、单纯坦率的朝。性格与价值观截然不同的两人，虽然满腹困惑，却还是开始了这段有些生疏又笨拙的同居生活。  这是一则描写两个各自背负孤独生活下去的人，在摸索中一点一滴展开的岁差同居故事。  人見知りの小説家・高代槙生は、 姉夫婦の葬式で両親を亡くした姪の田汲朝を、 勢いで引き取ることになる。 思いがけずはじまった同居生活によって、 それまで静かだった槙生の日常は一変。 他人と暮らすことに不慣れな性格のため、 15歳の朝との生活に不安を感じていた。 一方、両親を亡くし居場所を見失った朝は、 はじめて感じる孤独の中で、 母とはまるで違う “大人らしくない”槙生の生き方に触れていく。 人づきあいが苦手で孤独を好む槙生と、 人懐っこく素直な性格の朝。 性格も価値観もまるで違う二人は、 戸惑いながらも、 ぎこちない共同生活を始めていく。 共に、孤独を生きていく二人の、 手探りで始まる年の差同居譚。...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">日常</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E9%81%95%E5%9B%BD%E6%97%A5%E8%A8%98%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://ikoku-anime.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/493016" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="81" 
+         data-score="5.6"
+         data-origin="漫画改"
+         data-tags="漫画改|校园|TV|恋爱|日本|少女向">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/e0/23/494564_VD7Jn.jpg" loading="lazy" alt="花样少年少女">
+            <div class="score-badge">★ 5.6</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="花样少年少女">
+                <span class="title-cn">花样少年少女</span>
+                <span class="title-jp">花ざかりの君たちへ</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月4日</span>
+                <span>🔥 81 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 竹村菜月</p>
+                <p><strong>音乐:</strong> 横山克</p>
+                
+            </div>
+
+            <p class="summary">在美国念书成长的少女芦屋瑞稀，憧憬着跳高选手佐野泉的英姿，对他一见钟情。为了能见到他，瑞稀回到了日本，并女扮男装转学进入私立男校樱开学园，也很幸运地跟他同班，甚至住在同一宿舍里。然而，佐野泉却已经放弃了跳高。 瑞稀为了鼓励佐野泉重新跳高，一方面不能暴露自己是女生的身份，却在另一方面也被佐野泉的心给吸引了──  「花ざかりの君たちへ」がアニメになります！  以前から、中条比紗也先生と共に内容を話し合いながら進めてきた企画です。 中条先生もキャラクターのラフやシナリオを見ながら、 まんがと違った表現方法で紡がれる「花君」の世界観をとても楽しみにしていました。  先生と一緒に完成版を目にすることができなかったのは、とても残念ではありますが、 読者の皆様の熱い応援のおかげで、 完結から20年が経とうとしている「花ざかりの君たちへ」が、 再びアニメという形で動き出すことは、大変ありがたいと思っております。  中条先生や読者の皆様の期待に応えられるよう、 制作現場、編集部と力を合わせて取り組んでおりますので、放送を楽しみにお待ちください！...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">校园</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">恋爱</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">少女向</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E8%8A%B1%E3%81%96%E3%81%8B%E3%82%8A%E3%81%AE%E5%90%9B%E3%81%9F%E3%81%A1%E3%81%B8%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://hanakimi-anime.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/494564" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="343" 
+         data-score="3.1"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本|剧情">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/41/af/495531_W0D3B.jpg" loading="lazy" alt="达尔文事变">
+            <div class="score-badge">★ 3.1</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="达尔文事变">
+                <span class="title-cn">达尔文事变</span>
+                <span class="title-jp">ダーウィン事変</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月6日</span>
+                <span>🔥 343 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 津田尚克</p>
+                <p><strong>音乐:</strong> 桶狭間ありさ・堀川真理子</p>
+                <p><strong>主题歌演出:</strong> Official髭男dism / a子</p>
+            </div>
+
+            <p class="summary">なんで、人間だけが特別なの？  アメリカ・ミズーリ州の片田舎に暮らす少年・チャーリーは、人間を超える知能とチンパンジー を超える身体能力を併せもつ、半分ヒトで半分チンパンジーの「ヒューマンジー」。  15歳になったチャーリーは、人間の里親の勧めで初めて学校に入学。 そこでチャーリーは、頭脳明晰だがコミュニケーションが苦手なルーシーと出会う。  平穏な学校生活もつかの間、チャーリーはその出自の特異性ゆえに、「動物解放」を掲げる テロ組織・ALAにつけ狙われることに！  チャーリーは家族やルーシーを守るため、ALAと対決する道を選択する——  「テロ」「差別」「人権」「炎上」……ヒトが抱える問題に、 「ヒト以外」のチャーリーが、ルーシーとともに対峙する。  ヒューマン＆ノン・ヒューマンドラマが、ここに開幕!!...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">剧情</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E3%83%80%E3%83%BC%E3%82%A6%E3%82%A3%E3%83%B3%E4%BA%8B%E5%A4%89%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://darwinsincident.net/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/495531" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="315" 
+         data-score="7"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|恋爱|日本">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/67/d6/498791_26Yp3.jpg" loading="lazy" alt="现在多闻君是哪一面！？">
+            <div class="score-badge">★ 7</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="现在多闻君是哪一面！？">
+                <span class="title-cn">现在多闻君是哪一面！？</span>
+                <span class="title-jp">多聞くん今どっち！？</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月3日</span>
+                <span>🔥 315 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 永岡智佳</p>
+                
+                <p><strong>主题歌演出:</strong> F/ACE【福原多聞(CV:波多野翔)、坂口桜利(CV:千葉翔也)、橘敬人(CV:畠中祐)、石橋ナツキ(CV:天﨑滉平)、甲斐倫太郎(CV:長岡龍歩)】</p>
+            </div>
+
+            <p class="summary">为了供奉我推，攒钱攒到了我推家。  把人生全部奉献给「本命」的高中生木下歌夏，目前正全力应援大人气偶像团体F／ACE的成员──福原多闻。 每天勤奋投入追星应援活动的歌夏，有一天在做家事代行打工时，被派去的对象是……竟然是自己本命的家！？在那里与她见面的，是和舞台上性感＆狂野兼具、完美偶像形象完全相反，属于阴沉黑暗属性的低自尊多闻本人──！  「对不起、真的很对不起、我是该死的大骗子……我本来就没有受到支持的价值……我是冒牌货……」 「蛤？你少瞧不起粉丝的爱了。多闻让我们的世界变成了乐园，他是帅死人的天才，古今无双！也就是神！就算你是自己的黑粉，我也不会因此屈服！！！（福原多闻，全肯定）」  在为本命的反差真面目动摇不已的同时，歌夏发现自己居然也会被这个阴沉版的多闻扑通心动…！？无论什么模样，多闻就是多闻！歌夏决定全力支持自我价值感极低的他！  让你一边心花怒放、一边在地上打滚，注定「掉坑」无路可逃！人格超分裂×过于崭新的追星活动爱情喜剧，正式诞生！！！    [简介原文] 木下うたげは大人気アイドル・F/ACEの福原多聞くんを推している高校生。 ある日バイトで向かった先が、なんと多聞くんの家だった！ しかも、多聞くんの本性はセクシー＆ワイルドなアイドル姿とは真逆の、ジメジメ陰キャで…？ 「多聞くんは神！！」 「復唱して下さい」  どんな姿であれ、多聞くんは多聞くん。 自己肯定感が低い彼を、全力でサポートすることに！ しかし、ジメジメの多聞くんにも きゅんとしてしまい…？ オンオフ激しめ × 推し活ラブコメ、開幕！...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">恋爱</span><span class="tag meta-tag">日本</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E5%A4%9A%E8%81%9E%E3%81%8F%E3%82%93%E4%BB%8A%E3%81%A9%E3%81%A3%E3%81%A1%EF%BC%81%EF%BC%9F%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://tamon-anime.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/498791" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="394" 
+         data-score="6.3"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本|奇幻|战斗">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/b0/8b/502876_Lv4x9.jpg" loading="lazy" alt="炎炎消防队 叁之章 第2部分">
+            <div class="score-badge">★ 6.3</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="炎炎消防队 叁之章 第2部分">
+                <span class="title-cn">炎炎消防队 叁之章 第2部分</span>
+                <span class="title-jp">炎炎ノ消防隊 参ノ章 第2クール</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月9日</span>
+                <span>🔥 394 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 南川達馬</p>
+                <p><strong>音乐:</strong> 末廣健一郎</p>
+                <p><strong>主题歌演出:</strong> 西川貴教 / Survive Said The Prophet</p>
+            </div>
+
+            <p class="summary">炎が導く灼熱のダークファンタジー 最終章始動── 「柱」を巡る激戦や〝地下(ネザー)〟調査作戦を経て、世界の大いなる秘密へと近づいたシンラたち。  彼らの奮闘に応え、他の特殊消防隊も協力する姿勢を示し、全ての特殊消防隊は大災害を阻止すべく1つになった。 今、世界を守る〝シンラ（ヒーロー）〟と 消防官たちの最終決戦が開幕！...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">奇幻</span><span class="tag meta-tag">战斗</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E7%82%8E%E7%82%8E%E3%83%8E%E6%B6%88%E9%98%B2%E9%9A%8A%20%E5%8F%82%E3%83%8E%E7%AB%A0%20%E7%AC%AC2%E3%82%AF%E3%83%BC%E3%83%AB%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://fireforce-anime.jp/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/502876" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="1522" 
+         data-score="6.7"
+         data-origin="轻小说改"
+         data-tags="轻小说改|悬疑|TV|日本|战斗|小说改">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/0d/a2/510753_3zw53.jpg" loading="lazy" alt="靠死亡游戏混饭吃。">
+            <div class="score-badge">★ 6.7</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="靠死亡游戏混饭吃。">
+                <span class="title-cn">靠死亡游戏混饭吃。</span>
+                <span class="title-jp">死亡遊戯で飯を食う。</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月7日</span>
+                <span>🔥 1522 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 上野壮大</p>
+                <p><strong>音乐:</strong> 松本淳一</p>
+                <p><strong>主题歌演出:</strong> 藤川千愛（ED）</p>
+            </div>
+
+            <p class="summary">这是某个疯狂世界里的故事。  少女（玩家）们挑战与死亡比邻的游戏。 若能生还便可获得奖金，但哪怕做到万无一失也仍有可能命丧黄泉。  世上确实存在着这样一群人， 生活在这种疯狂世界中。  玩家名：幽鬼（YUKI）。 职业：杀人游戏的职业玩家。 她今天也依旧靠着死亡游戏混饭吃。    [简介原文] これは、とあるいかれた世界の話。  少女《プレイヤー》たちが挑むのは、死が隣り合わせのゲーム。 生還すれば賞金を得るが、万全を尽くしても命を落とすことがある。  そんな世界で、生きていく。 この世にはそういう人間たちが確かにいる。  プレイヤーネーム・幽鬼《ユウキ》。 職業・殺人ゲームのプロフェッショナル。 彼女は今日も、死亡遊戯で飯を食う。...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">轻小说改</span><span class="tag meta-tag">悬疑</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">战斗</span><span class="tag meta-tag">小说改</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E6%AD%BB%E4%BA%A1%E9%81%8A%E6%88%AF%E3%81%A7%E9%A3%AF%E3%82%92%E9%A3%9F%E3%81%86%E3%80%82%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://shiboyugi-anime.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/510753" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="58" 
+         data-score="4.7"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/1a/fc/513361_D1a22.jpg" loading="lazy" alt="DARK MOON -黑之月: 月之祭坛-">
+            <div class="score-badge">★ 4.7</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="DARK MOON -黑之月: 月之祭坛-">
+                <span class="title-cn">DARK MOON -黑之月: 月之祭坛-</span>
+                <span class="title-jp">DARK MOON -黒の月: 月の祭壇-</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月9日</span>
+                <span>🔥 58 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 志賀翔子</p>
+                <p><strong>音乐:</strong> 千葉"naotyu-"直樹</p>
+                
+            </div>
+
+            <p class="summary">美しい海辺の都市・リバーフィールドの名門 ナイトスクール「デセリスアカデミー」。 そこには秘密のベールに包まれた７人の少年がいる。 彼らは暗い過去を持ちながらも、今は平凡な学校生活を送っている“ヴァンパイア”だった。 ある日、デセリスアカデミーに 女子生徒・スハが転校してくる。 幼い頃に友人を失ったことでヴァンパイアを 強く憎んでいるスハだったが、そんな彼女に少年たちはどうしようもなく惹かれていくのだった。 そんななか街を揺るがす事件が起こり、 少年たちの過去が徐々に解き明かされ、 彼らの世界は変わり始めていく……。...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=DARK%20MOON%20-%E9%BB%92%E3%81%AE%E6%9C%88%3A%20%E6%9C%88%E3%81%AE%E7%A5%AD%E5%A3%87-%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://darkmoon-tba.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/513361" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="5960" 
+         data-score="8.1"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本|奇幻">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/0b/24/515759_qA1Zc.jpg" loading="lazy" alt="葬送的芙莉莲 第二季">
+            <div class="score-badge">★ 8.1</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="葬送的芙莉莲 第二季">
+                <span class="title-cn">葬送的芙莉莲 第二季</span>
+                <span class="title-jp">葬送のフリーレン 第2期</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月16日</span>
+                <span>🔥 5960 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 北川朋哉</p>
+                <p><strong>音乐:</strong> Evan Call</p>
+                <p><strong>主题歌演出:</strong> Mrs. GREEN APPLE / milet</p>
+            </div>
+
+            <p class="summary">「流泪道别并不适合我们，因为下次再见时会很难为情。」 在勇者欣梅尔一行人击败魔王后的世界中，与欣梅尔等人一同为世界带来和平、活了千年以上的精灵魔法使──芙莉莲。 在面对寿命已尽的欣梅尔之死时，因落下的泪水与心中涌现的情感，踏上了「理解人类之心的旅程」。在旅途中，她与曾由过去伙伴海塔抚养长大的魔法使费伦，以及同为伙伴艾冉的弟子、战士修塔尔克结伴同行，一同朝向灵魂长眠之地前进。 在旅程中，与各种人们相遇交流，并与狡诈的魔族与魔物展开战斗。有时平静温柔，有时无聊琐碎，有时激烈动荡，有时直击心扉……所有的一切、每一个瞬间，都一点一滴地堆叠成三人无可取代的珍贵回忆。而在这趟旅程的终点，究竟等待着他们的会是什么？ 魔法使资格测试结束后，他们三人将再度启程──    [简介原文] 「週刊少年サンデー」(小学館)で連載中、山田鐘人(原作)とアベツカサ(作画)による漫画『葬送のフリーレン』。 勇者とそのパーティーによって魔王が倒された“その後”の世界を舞台に、 勇者と共に魔王を打倒した千年以上生きる魔法使い・フリーレンと、彼女が新たに出会う人々の旅路が描かれていく。 “魔王討伐後”という斬新な時系列で展開する胸に刺さるドラマやセリフ、魔法や剣による戦い、 思わず笑ってしまうユーモアなど、キャラクターたちが織り成す物語で、多くの読者を獲得。 これまでに「マンガ大賞2021」大賞、「第25回手塚治虫文化賞」新生賞、 「第69回(2023年度)小学館漫画賞」、「第48回講談社漫画賞」少年部門など数々の漫画賞を受賞。 そして現在発売中のコミックスは累計部数3200万部を突破！漫画ファンの間で旋風を起こしている。 それを原作とするTVアニメは2023年9月から2024年3月まで放送され、 国内外で幅広い、数多くのファンを獲得し、大きな反響を呼んだ。 そしてこの度、待望の第2期が2026年1月より日本テレビ系で放送決定！ フリーレンの「人の心を知る旅」が、再び始まる―。...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">奇幻</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E8%91%AC%E9%80%81%E3%81%AE%E3%83%95%E3%83%AA%E3%83%BC%E3%83%AC%E3%83%B3%20%E7%AC%AC2%E6%9C%9F%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://frieren-anime.jp/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/515759" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="2440" 
+         data-score="7.1"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|恋爱|日本|奇幻">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/92/95/517057_257ad.jpg" loading="lazy" alt="【我推的孩子】 第三季">
+            <div class="score-badge">★ 7.1</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="【我推的孩子】 第三季">
+                <span class="title-cn">【我推的孩子】 第三季</span>
+                <span class="title-jp">【推しの子】 第3期</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月14日</span>
+                <span>🔥 2440 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 平牧大輔</p>
+                <p><strong>音乐:</strong> 伊賀拓郎</p>
+                <p><strong>主题歌演出:</strong> ちゃんみな / なとり</p>
+            </div>
+
+            <p class="summary">故事迈向全新舞台——  自「POP IN 2」发行已过了半年。多亏了MEM CYO的努力，如今的 B小町已在爆红前夕。 阿库亚走在全方位艺人的道路上，茜则是在实力派女演员的路上逐步前进。 然而另一方面，佳奈却失去了以往的开朗。 而为了追查小爱与吾郎的死亡真相，露比在演艺圈中不断往上爬。  ────以谎言作为武器。    [简介原文] 物語は新たなステージへ──  『POP IN ２』のリリースから半年。 ＭＥＭちょの尽力の甲斐もあり、今やB小町はブレイク寸前。 アクアはマルチタレント、あかねは実力派女優の道を順調に歩んでいる。 一方で、かなは以前の明るさを失っていた。 そして、アイとゴローの死の真相を追い求め、 ルビーは芸能界を駆け上がる。 ────嘘を、武器にして。...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">恋爱</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">奇幻</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E3%80%90%E6%8E%A8%E3%81%97%E3%81%AE%E5%AD%90%E3%80%91%20%E7%AC%AC3%E6%9C%9F%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://ichigoproduction.com/Season3/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/517057" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="89" 
+         data-score="5"
+         data-origin="轻小说改"
+         data-tags="轻小说改|TV|日本|小说改">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/11/9b/517561_Rs7mZ.jpg" loading="lazy" alt="优雅贵族的休假指南。">
+            <div class="score-badge">★ 5</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="优雅贵族的休假指南。">
+                <span class="title-cn">优雅贵族的休假指南。</span>
+                <span class="title-jp">穏やか貴族の休暇のすすめ。</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月7日</span>
+                <span>🔥 89 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 能田健太</p>
+                <p><strong>音乐:</strong> 山下康介</p>
+                <p><strong>主题歌演出:</strong> 牧島輝 / 直田姫奈</p>
+            </div>
+
+            <p class="summary">ファンタジーな世界のとある大国で宰相として名を馳せていた青年・リゼル。  ある日、部下と話していた彼はふと瞬きをした瞬間…… 別の世界へと転移してしまう。  突然の出来事にも落ち着いた様子で、 優れた頭脳と話術を活かし、人々の心を掴んでいくリゼル。 さらに、元いた世界へ戻れるのか解らない状況で、彼は軽やかに口にする。  「休暇だと思って楽しみます」  誰にも媚びず誰にも従わない上級冒険者・ジルを相棒にしたリゼルは、 自らも冒険者となり、異世界生活を存分に満喫していくことに。  有閑貴族リゼル×一匹狼ジルの異世界まったり冒険ファンタジーが今、始まる！...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">轻小说改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">小说改</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E7%A9%8F%E3%82%84%E3%81%8B%E8%B2%B4%E6%97%8F%E3%81%AE%E4%BC%91%E6%9A%87%E3%81%AE%E3%81%99%E3%81%99%E3%82%81%E3%80%82%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://odayakakizoku-pr.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/517561" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="342" 
+         data-score="5.6"
+         data-origin="轻小说改"
+         data-tags="轻小说改|悬疑|TV|日本|奇幻|小说改">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/db/7c/520642_65rzc.jpg" loading="lazy" alt="厄里斯的圣杯">
+            <div class="score-badge">★ 5.6</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="厄里斯的圣杯">
+                <span class="title-cn">厄里斯的圣杯</span>
+                <span class="title-jp">エリスの聖杯</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月8日</span>
+                <span>🔥 342 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 森田と純平</p>
+                <p><strong>音乐:</strong> 出羽良彰、石塚徹</p>
+                <p><strong>主题歌演出:</strong> 鷲尾伶菜 / 田村ゆかり</p>
+            </div>
+
+            <p class="summary">不起眼的子爵千金康士坦丝·葛莱尔（康妮）除了诚实之外没有其他优点。这天，她遭到未婚夫出轨对象的阴谋陷害，顿时被逼入绝境。 在主谋要给她定罪的时候，康妮向四周投去求助的目光——别说替她辩护的人了，就连知晓真相的人也都选择冷眼旁观。 然而就在这时，绝望的康妮耳畔突然传来了一声低语：「我来救你」。 这声音的主人，竟是十年前被处刑的公爵千金，被称作「绝世恶女」的斯卡蕾特·卡斯蒂尔。 本不该相遇的二人，就此相逢。命运的齿轮开始转动。 随后，一场席卷整个贵族社会的巨大阴谋逐渐浮出水面——。...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">轻小说改</span><span class="tag meta-tag">悬疑</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">奇幻</span><span class="tag meta-tag">小说改</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E3%82%A8%E3%83%AA%E3%82%B9%E3%81%AE%E8%81%96%E6%9D%AF%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://eris-seihai.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/520642" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="98" 
+         data-score="5"
+         data-origin="轻小说改"
+         data-tags="轻小说改|TV|日本|BL|小说改">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/11/3b/522370_FFyEr.jpg" loading="lazy" alt="异世界的安泰全看社畜">
+            <div class="score-badge">★ 5</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="异世界的安泰全看社畜">
+                <span class="title-cn">异世界的安泰全看社畜</span>
+                <span class="title-jp">異世界の沙汰は社畜次第</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月6日</span>
+                <span>🔥 98 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 石平信司</p>
+                <p><strong>音乐:</strong> 大橋恵</p>
+                <p><strong>主题歌演出:</strong> kobore / 森崎ウィン</p>
+            </div>
+
+            <p class="summary">三十路目前のサラリーマン・近藤誠一郎は、 ある日、聖女召喚に巻き込まれて異世界のロマーニ王国に転移してしまう。 昼夜を問わず働き続け社畜根性が染みついていた誠一郎は、異世界でも仕事を要求し、王宮の経理課で働くことに。  経理課の立て直しを進める忙しい日々のなか、誠一郎が手に入れたのは『疲れが吹っ飛ぶ栄養剤』。 栄養剤のおかげで、元からあった体調不良も疲労もなくなり感激するが、 異世界の魔素耐性のない誠一郎は副作用のせいで命の危機に!  助かるためには、魔力のある人に「魔力を馴染ませてもらう」必要があり、 誠一郎は『氷の貴公子』と呼ばれる第三騎士団団長アレシュに身をゆだねることになるが――...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">轻小说改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">BL</span><span class="tag meta-tag">小说改</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E7%95%B0%E4%B8%96%E7%95%8C%E3%81%AE%E6%B2%99%E6%B1%B0%E3%81%AF%E7%A4%BE%E7%95%9C%E6%AC%A1%E7%AC%AC%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://iseshachi.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/522370" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="262" 
+         data-score="5.8"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本|奇幻">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/51/33/522414_4VRzA.jpg" loading="lazy" alt="神八小妹不可怕">
+            <div class="score-badge">★ 5.8</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="神八小妹不可怕">
+                <span class="title-cn">神八小妹不可怕</span>
+                <span class="title-jp">カヤちゃんはコワくない</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月11日</span>
+                <span>🔥 262 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 博史池畠</p>
+                <p><strong>音乐:</strong> KOHTA YAMAMOTO、成田旬</p>
+                <p><strong>主题歌演出:</strong> ヰ世界情緒 / 朔雀&導凰</p>
+            </div>
+
+            <p class="summary">就读于花麦幼稚园的佐藤神八，是一个拥有超凡灵能力的女孩。她默默无闻地击败了那些悄悄接近朋友和家人的"幽灵"。然而，她的言行却无法被理解，反而被视为问题儿童。但当班主任千惠老师得知这个秘密后，神八的幼儿园生活开始发生改变……一个又一个诡异、凶恶的怪异接连出现！今天，神八妹妹的拳头再次炸裂！    [简介原文] カヤちゃんは幼稚園でも有名な問題児。 しかし担当を任されたチエ先生は、 彼女の隠された能力を知る―――。  幼稚園が舞台の 最強ホラーアクション開園!!...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">奇幻</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E3%82%AB%E3%83%A4%E3%81%A1%E3%82%83%E3%82%93%E3%81%AF%E3%82%B3%E3%83%AF%E3%81%8F%E3%81%AA%E3%81%84%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://kayachan.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/522414" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="204" 
+         data-score="4.9"
+         data-origin="游戏改"
+         data-tags="游戏改|TV|日本">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/3f/22/523141_ifKkU.jpg" loading="lazy" alt="阿尔涅的事件簿">
+            <div class="score-badge">★ 4.9</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="阿尔涅的事件簿">
+                <span class="title-cn">阿尔涅的事件簿</span>
+                <span class="title-jp">アルネの事件簿</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月6日</span>
+                <span>🔥 204 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 井上圭介</p>
+                <p><strong>音乐:</strong> 藤澤慶昌</p>
+                <p><strong>主题歌演出:</strong> Sou / 小林私</p>
+            </div>
+
+            <p class="summary">二年前に母を亡くした、貴族の少女・リン。ある夜、不審な行動をとる父親を心配し、尾行をしていたところ――残酷な殺人事件の現場を見てしまう。謎の“異形の存在”に姿を見られ、追い詰められたリンは、いつの間にか奇妙な世界「リューゲンベルグ」に迷い込んでしまう。見知らぬ世界にひとり取り残されたリンは、わけもわからない状況の中、棺桶で眠る“伝説の吸血鬼”を見つけるのだった――。  異形の力をあやつる吸血鬼探偵、アルネ・ノインテーター。 吸血鬼を愛する名門貴族の娘、リン・ラインヴァイス。 決して交わらない世界に生きていたはずの二人が、 血塗られた謎を解くために手を結んだ。  闇夜に訪れた絶体絶命の危機に、リンがさまよい込んだのは、 異形の者たちが住む、謎の街・リューゲンベルグだった。 その街での“最凶”と呼ばれた吸血鬼アルネとの出逢いは、 少女の生きる世界を大きく変えていく――  そして今宵も、二人の前に新たな「殺人事件」が訪れる。 人間と怪異の二つの理が乱舞する世界で巻き起こる 奇々怪々な事件の裏に隠された真相とは？  「さあ、人間よ。赤い月の下、ユカイに踊るがいい」...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">游戏改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E3%82%A2%E3%83%AB%E3%83%8D%E3%81%AE%E4%BA%8B%E4%BB%B6%E7%B0%BF%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://arne.asmik-ace.co.jp/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/523141" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="1527" 
+         data-score="7.6"
+         data-origin="漫画改"
+         data-tags="漫画改|校园|TV|恋爱|日本|少年向">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/71/50/525565_OxOv7.jpg" loading="lazy" alt="相反的你和我">
+            <div class="score-badge">★ 7.6</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="相反的你和我">
+                <span class="title-cn">相反的你和我</span>
+                <span class="title-jp">正反対な君と僕</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月11日</span>
+                <span>🔥 1527 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 長友孝和</p>
+                <p><strong>音乐:</strong> tofubeats</p>
+                <p><strong>主题歌演出:</strong> 乃紫 / PAS TASTA feat. 橋本絵莉子</p>
+            </div>
+
+            <p class="summary">いつも元気いっぱいだけど周りの目を気にしてしまう女子・鈴木と、 物静かだけど自分の意見をしっかり言える男子・谷。 正反対な二人が誤解や勘違いをしながらもお互いを尊重し、 ゆっくりと理解を深めていく姿と、友人たちとの学校生活を描くラブコメディ。...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">校园</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">恋爱</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">少年向</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E6%AD%A3%E5%8F%8D%E5%AF%BE%E3%81%AA%E5%90%9B%E3%81%A8%E5%83%95%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://sh-anime.shochiku.co.jp/seihantai_anime/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/525565" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="376" 
+         data-score="5.2"
+         data-origin="轻小说改"
+         data-tags="轻小说改|TV|日本|小说改">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/42/c5/525816_xDas0.jpg" loading="lazy" alt="身为魔族的我想向勇者小队的可爱女孩告白。">
+            <div class="score-badge">★ 5.2</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="身为魔族的我想向勇者小队的可爱女孩告白。">
+                <span class="title-cn">身为魔族的我想向勇者小队的可爱女孩告白。</span>
+                <span class="title-jp">勇者パーティーにかわいい子がいたので、告白してみた。</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月6日</span>
+                <span>🔥 376 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 峯友則</p>
+                <p><strong>音乐:</strong> 神前暁＆MONACA</p>
+                
+            </div>
+
+            <p class="summary">異世界転生した、元人間の魔族・ヨウキは、 魔王の部下という中途半端なポジションで、 勇者たちを倒す任務に就いていた。  やがて魔王城に攻め入る勇者パーティーと 対峙したヨウキは……。 「....やべえ、ドストライクだわ」  あろうことか、勇者パーティーの 僧侶・セシリアに一目惚れしてしまった！  真剣に挑む顔も、しぐさも、もう全てが可愛い！天使すぎる！ そうして告白を決意したヨウキだが――？  人間と魔族の織り成す 異世界一ピュアでちょっと厨二な、 ”ラブコメ”ファンタジー！...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">轻小说改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">小说改</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E5%8B%87%E8%80%85%E3%83%91%E3%83%BC%E3%83%86%E3%82%A3%E3%83%BC%E3%81%AB%E3%81%8B%E3%82%8F%E3%81%84%E3%81%84%E5%AD%90%E3%81%8C%E3%81%84%E3%81%9F%E3%81%AE%E3%81%A7%E3%80%81%E5%91%8A%E7%99%BD%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F%E3%80%82%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://yuukawa-anime.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/525816" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="236" 
+         data-score="6.3"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|恋爱|日本|日常">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/61/54/525946_DTNzD.jpg" loading="lazy" alt="透明男与人类女～不久成为夫妇的二人～">
+            <div class="score-badge">★ 6.3</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="透明男与人类女～不久成为夫妇的二人～">
+                <span class="title-cn">透明男与人类女～不久成为夫妇的二人～</span>
+                <span class="title-jp">透明男と人間女～そのうち夫婦になるふたり～</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月8日</span>
+                <span>🔥 236 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 瀬田光穂</p>
+                <p><strong>音乐:</strong> 川田瑠夏</p>
+                <p><strong>主题歌演出:</strong> 阿部真央 / 石原夏織</p>
+            </div>
+
+            <p class="summary">风度翩翩的“透明人”，透乃眼明开设了一家侦探事务所。 性格温和的“人类女性”，夜香静花在透乃眼侦探事务所就职。  即便透乃眼隐去身形，双眼失明的夜香却也总能神奇地察觉到他的位置。  同样“看不见”的两人， 在不知不觉间，擦出了爱的火花…？    [简介原文] 探偵事務所を構える紳士な 「透明男」の透乃眼あきらと その事務所に勤めるおっとりした 「人間女性」の夜香しずか。  透明に姿を消しても、目の見えない夜香には 不思議と透乃眼の居場所がわかってしまう。  “見えない”ふたりは、 いつしか互いに惹かれ合い…？...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">恋爱</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">日常</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E9%80%8F%E6%98%8E%E7%94%B7%E3%81%A8%E4%BA%BA%E9%96%93%E5%A5%B3%EF%BD%9E%E3%81%9D%E3%81%AE%E3%81%86%E3%81%A1%E5%A4%AB%E5%A9%A6%E3%81%AB%E3%81%AA%E3%82%8B%E3%81%B5%E3%81%9F%E3%82%8A%EF%BD%9E%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://tomeiotoko-ningenonna.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/525946" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="227" 
+         data-score="5.2"
+         data-origin="轻小说改"
+         data-tags="轻小说改|TV|日本|奇幻|战斗|小说改">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/b9/52/526979_R83u1.jpg" loading="lazy" alt="地狱模式 ～喜欢速通游戏的玩家在废设定异世界无双～">
+            <div class="score-badge">★ 5.2</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="地狱模式 ～喜欢速通游戏的玩家在废设定异世界无双～">
+                <span class="title-cn">地狱模式 ～喜欢速通游戏的玩家在废设定异世界无双～</span>
+                <span class="title-jp">ヘルモード ～やり込み好きのゲーマーは廃設定の異世界で無双する～</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月9日</span>
+                <span>🔥 227 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 玉川真人</p>
+                <p><strong>音乐:</strong> 土田美咲、中嶋純子、阿部玲子、福廣秀一郎、金崎萌、澤田佳歩、佐久間奏、ボウ・デミアン、栗原真葉、田中津久美、三木深</p>
+                <p><strong>主题歌演出:</strong> あたらよ / 花耶</p>
+            </div>
+
+            <p class="summary">「诚邀您进入永无止境的游戏？」35岁、单身且没有女友的上班族山田健一，一直寻找着能玩上十年以上的游戏。他最讨厌毫无挑战性的“废游戏”，因此偶然发现了一款没有标题的神秘网络游戏。正打算用最高难度的“地狱模式”开局游玩时，却突然被传送到了异世界，变成了一个农奴少年——亚莲！！亚莲凭借那独特而充满谜团的天赋“召唤士”，在极其艰难的异世界中，开始探索通往最强之路。然而，在这个世界里既没有攻略本，也没有网络讨论区，就连升级都难如登天的异世界生活，实际上比他想象中的更加真实，堪称真正的“地狱模式”！？  那种软绵绵、毫无难度的异世界生活根本满足不了他！从一开始就是最强的主角早就过时了！？ 前废品玩家踏入超高难度异世界的冒险故事，现已正式开启！！    [简介原文] 「終わらないゲームにあなたを招待します。」  35歳独身彼女なしのサラリーマン・山田健一。 ヌルゲーを嫌い、10年以上やりこめるゲームを探していた彼は、 ある日、地球から姿を消した……。  偶然見つけた名前の無いネットゲームを 最高難易度「ヘルモード」でプレーしようとしていた健一は、 異世界の農奴の少年・アレンに転生してしまう！！  唯一無二にして謎多き才能「召喚士」を駆使して、 ヌルくない異世界で最強への道を手探りで歩み始めるアレン。  しかし、攻略本やネット掲示板が存在せず、 レベルアップさえ困難な異世界生活は予想以上に「ヘルモード」で！？  ヌル〜い異世界生活じゃ物足りない！ 序盤から最強主人公はもう古い！？ 元廃ゲーマーが行く超高難易度の異世界冒険譚、開幕！！...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">轻小说改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">奇幻</span><span class="tag meta-tag">战斗</span><span class="tag meta-tag">小说改</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E3%83%98%E3%83%AB%E3%83%A2%E3%83%BC%E3%83%89%20%EF%BD%9E%E3%82%84%E3%82%8A%E8%BE%BC%E3%81%BF%E5%A5%BD%E3%81%8D%E3%81%AE%E3%82%B2%E3%83%BC%E3%83%9E%E3%83%BC%E3%81%AF%E5%BB%83%E8%A8%AD%E5%AE%9A%E3%81%AE%E7%95%B0%E4%B8%96%E7%95%8C%E3%81%A7%E7%84%A1%E5%8F%8C%E3%81%99%E3%82%8B%EF%BD%9E%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://hellmode-anime.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/526979" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="339" 
+         data-score="5.7"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本|奇幻">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/d7/24/528434_ZqyTB.jpg" loading="lazy" alt="蘑菇魔女">
+            <div class="score-badge">★ 5.7</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="蘑菇魔女">
+                <span class="title-cn">蘑菇魔女</span>
+                <span class="title-jp">シャンピニオンの魔女</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月8日</span>
+                <span>🔥 339 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 久保洋祐</p>
+                <p><strong>音乐:</strong> はまたけし</p>
+                <p><strong>主题歌演出:</strong> ロス / Ms.OOJA</p>
+            </div>
+
+            <p class="summary">黒い森の奥深く、 毒キノコのお家にひっそりと、 ルーナという一人の魔女が住んでいました。  彼女が触れたり歩いたりしたところには 毒キノコが生えることが多く、 吐く息や皮膚には毒が混じっています。 街の人達は彼女を “シャンピニオンの魔女”と呼びました。 黒魔女として恐れられている彼女に、 近づく者は誰一人いません。  ルーナは今日も薬を売るために 街へと向かいます。 彼女の薬は万能薬として大人気で、 手にした人はみな口をそろえて 感謝の言葉を述べます。 しかし、みな 誰が薬を作っているか知りません。 それでもルーナは、 今日も薬を作り続けます。  そんなある日のこと。 人の温もりを知らない孤独なルーナに、 夢のような出会いが訪れて……。  恋と冒険と感動の 魔法ファンタジーが、 いま幕を開ける！  ──これは、 心優しい黒魔女・ルーナと それを取り巻く人々の、 それぞれの愛の物語。...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">奇幻</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E3%82%B7%E3%83%A3%E3%83%B3%E3%83%94%E3%83%8B%E3%82%AA%E3%83%B3%E3%81%AE%E9%AD%94%E5%A5%B3%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://champignon-pr.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/528434" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="93" 
+         data-score="6.5"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本|运动">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/5b/c9/530110_EQtrE.jpg" loading="lazy" alt="极速车魂 第三季">
+            <div class="score-badge">★ 6.5</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="极速车魂 第三季">
+                <span class="title-cn">极速车魂 第三季</span>
+                <span class="title-jp">MFゴースト 3rd Season</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月4日</span>
+                <span>🔥 93 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 中智仁</p>
+                <p><strong>音乐:</strong> 土橋安騎夫</p>
+                
+            </div>
+
+            <p class="summary">为了挑战「MFG」，来自英国的主角片桐夏向，在第1战「小田原Pikes Peak」拿下第9名，并在第2战「芦之湖GT」跑出第4名，稳定地往前推进名次。接着，就在他一步步往上爬升之际，赛事舞台随之来到第3战「The．Peninsula真鹤」。 群马之魂的继承新星，诸星濑名的参战，使得上位竞争变得越发激烈。夏向虽驾驶了搭载涡轮、战斗力大幅提升的86迎战群雄，但在决赛前夕，他却因手肘受伤而无法使用二档，更于此状态下开始决赛。  面对接连被竞争对手超越、步入绝境的局面，那股潜藏于他心底、赤裸无遗的斗争本能终于全面苏醒──！  ＭＦＧ。 それは世界の自動車のＥＶ化が実現した近未来、日本で開催されている唯一の化石燃料を使った自動車によるモータースポーツである。  今や絶滅危惧種となったハイパワーマシンによる熾烈なレースは世界中にインターネット配信され、爆発的な人気を博していた。  そこに英国から渡航した一人の若者が、チャレンジャーとして挑む。カナタ・リヴィントンこと――片桐夏向。彼こそが、かつて公道最速伝説を確立した男の教えを受け継ぐＭＦＧ新世代である。  ポルシェ、ランボルギーニ、フェラーリ、ニッサン・GT-R。世界最高峰のハイパワーマシンを駆るライバル達に対して、カナタが選んだのはトヨタ８６ＧＴ。非力なマシンでいかに強豪に立ち向かうのか？  箱根を舞台に繰り広げられるＭＦＧ第１戦・小田原パイクスピーク。挑戦者・カナタの走りは、並み居るライバル達や観客の目を奪う。箱根ダウンヒルを圧倒的な速さで駆け抜ける８６――。  新たな公道最速伝説が、今生まれようとしていた。...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">运动</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=MF%E3%82%B4%E3%83%BC%E3%82%B9%E3%83%88%203rd%20Season%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://mfg-anime.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/530110" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="248" 
+         data-score="4.9"
+         data-origin="轻小说改"
+         data-tags="轻小说改|TV|日本|奇幻|战斗|小说改">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/08/c8/531724_U8Ti8.jpg" loading="lazy" alt="贵族转生 ～得天眷顾一出生就获得最强力量～">
+            <div class="score-badge">★ 4.9</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="贵族转生 ～得天眷顾一出生就获得最强力量～">
+                <span class="title-cn">贵族转生 ～得天眷顾一出生就获得最强力量～</span>
+                <span class="title-jp">貴族転生 ～恵まれた生まれから最強の力を得る～</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月7日</span>
+                <span>🔥 248 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 福田道生</p>
+                
+                <p><strong>主题歌演出:</strong> SUPER★DRAGON / アリーチェ（CV.橘杏咲）</p>
+            </div>
+
+            <p class="summary">規格外のチートスキルと あふれる知性を持つ最強貴族ノアが 部下を従え異世界を駆ける、 無双王子の異世界統治ファンタジー!! 皇帝の十三番目の子供という恵まれた地位、 生まれつきレベル上限∞、 従えた他人の能力を自分の能力にプラスできる チートスキルをもった世界最強の6歳・ノア。 転生によって貴族に生まれ変わり、 優れた教育と豊富な資源に支えられた環境で 自分の才能を開花させていく。 だが、華やかな貴族社会の裏側には 陰謀や権力争いが渦巻いていた。...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">轻小说改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">奇幻</span><span class="tag meta-tag">战斗</span><span class="tag meta-tag">小说改</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E8%B2%B4%E6%97%8F%E8%BB%A2%E7%94%9F%20%EF%BD%9E%E6%81%B5%E3%81%BE%E3%82%8C%E3%81%9F%E7%94%9F%E3%81%BE%E3%82%8C%E3%81%8B%E3%82%89%E6%9C%80%E5%BC%B7%E3%81%AE%E5%8A%9B%E3%82%92%E5%BE%97%E3%82%8B%EF%BD%9E%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://kizoku-tensei.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/531724" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="300" 
+         data-score="5.9"
+         data-origin="轻小说改"
+         data-tags="轻小说改|TV|日本|奇幻|战斗|小说改">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/31/38/534674_alb5D.jpg" loading="lazy" alt="魔术师库诺看得见一切">
+            <div class="score-badge">★ 5.9</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="魔术师库诺看得见一切">
+                <span class="title-cn">魔术师库诺看得见一切</span>
+                <span class="title-jp">魔術師クノンは見えている</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月4日</span>
+                <span>🔥 300 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 大庭秀昭</p>
+                <p><strong>音乐:</strong> 滝澤俊輔</p>
+                <p><strong>主题歌演出:</strong> ヰ世界情緒 / KOHTA YAMAMOTO feat. katagiri</p>
+            </div>
+
+            <p class="summary">在遥远的过去，人类曾与魔王爆发一场大战，最终由英雄击败了魔王。 然而，自那之后，在英雄的后裔之中，偶尔会诞生出「缺少某样东西」的孩子，人们将此称为──「英雄的伤痕」。  而这个故事，就是讲述着因为英雄的伤痕，从出生起就双目失明的少年库诺・古里翁。 世人向他的诞生献上祝福，但身处无尽黑暗中的他，却逐渐封闭了自己的内心。寄宿着「水之纹章」的库诺，迎来了教授水魔术的家庭教师──洁尼・寇斯。而她一句看似随口的话，彻底改变了库诺的人生。  「我想想，应该差不多跟眼球一样大吧？」 「…对啊，那就用水魔术为自己做出一双眼睛不就好了吗！？」  从此之后，库诺的人生目标，就是用水系魔术为自己创造一双全新的眼睛。仅仅经过五个月的魔术练习，库诺的实力便已经超越了自己的老师，其才华也随着这场前所未有的魔术挑战逐渐显现。 从透过魔力感知周遭的色彩、用水魔术做出暖手设备和湿巾，直到只用初级魔术再现出一只小猫……其技术与构思，库诺那出众的技能与想象力令宫廷魔法师都为之乍舌，由此他的实力也得到认可，成为了最强魔法师的弟子！？  以好奇心开拓世界的天才少年物语，此刻揭开序幕！  目の見えない少年クノンの目標は、水魔術で新たな目を作ること。 魔術を習い始めて僅か五ヵ月で教師の実力を追い越したクノンは、その史上初の挑戦の中でさらに才能を開花させていく… 好奇心で世界を切り拓く、盲目の天才少年の魔術探求ファンタジー、開幕。...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">轻小说改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">奇幻</span><span class="tag meta-tag">战斗</span><span class="tag meta-tag">小说改</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E9%AD%94%E8%A1%93%E5%B8%AB%E3%82%AF%E3%83%8E%E3%83%B3%E3%81%AF%E8%A6%8B%E3%81%88%E3%81%A6%E3%81%84%E3%82%8B%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="http://kunonanime.jp/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/534674" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="80" 
+         data-score="4.6"
+         data-origin="轻小说改"
+         data-tags="轻小说改|TV|日本|小说改">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/01/67/540031_nv00U.jpg" loading="lazy" alt="火喰鸟 羽州褴褛鸢组">
+            <div class="score-badge">★ 4.6</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="火喰鸟 羽州褴褛鸢组">
+                <span class="title-cn">火喰鸟 羽州褴褛鸢组</span>
+                <span class="title-jp">火喰鳥 羽州ぼろ鳶組</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月11日</span>
+                <span>🔥 80 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 八隅宏</p>
+                <p><strong>音乐:</strong> 高梨康治</p>
+                <p><strong>主题歌演出:</strong> ポルノグラフィティ / 大泉洋</p>
+            </div>
+
+            <p class="summary">かつて「火喰鳥」と呼ばれた江戸随一の火消侍・松永源吾。訳あって火消を辞めていたが、突然新庄藩から仕官の誘いが来る。妻・深雪の後押しもあり、源吾は頭取として崩壊した火消組を再建することに。一癖も二癖もある仲間を集め、＜ぼろ鳶＞と揶揄されながらも「どんな命も救うのだ」と奮闘する源吾達だったが、江戸では「狐火」という謎の連続不審火が続いていた。迫りくる災いに、諦めの悪い火消達が奔走する、エンタメ活劇が開幕！...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">轻小说改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">小说改</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E7%81%AB%E5%96%B0%E9%B3%A5%20%E7%BE%BD%E5%B7%9E%E3%81%BC%E3%82%8D%E9%B3%B6%E7%B5%84%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://hikuidori-project.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/540031" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="284" 
+         data-score="5.2"
+         data-origin="轻小说改"
+         data-tags="轻小说改|TV|日本|奇幻|战斗|小说改">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/0b/9d/541336_oG7SO.jpg" loading="lazy" alt="泛而不精的我被逐出了勇者队伍">
+            <div class="score-badge">★ 5.2</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="泛而不精的我被逐出了勇者队伍">
+                <span class="title-cn">泛而不精的我被逐出了勇者队伍</span>
+                <span class="title-jp">勇者パーティを追い出された器用貧乏</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月4日</span>
+                <span>🔥 284 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 神戸洋行</p>
+                <p><strong>音乐:</strong> 半田翼</p>
+                <p><strong>主题歌演出:</strong> 常闇トワ / Nowlu</p>
+            </div>
+
+            <p class="summary">「我再也不会让人说我是『泛而不精』了！总有一天，我要成为被称作『万能者』的探索者！」  某一天，隶属于「勇者队伍」的欧伦・杜拉，被身为队长、同时也是自己青梅竹马的奥利佛，以实力不足为由被无情开除。为了队伍，他从【剑士】转职成【赋予术士】，并用自己独创开发的魔术一路支援伙伴。对这样的欧伦而言，这种说法怎么样都实在无法接受。 然而，那些本该同甘共苦的伙伴，也嘲笑他只是个「泛而不精」，甚至连接替的人选也都找好了。失落的欧伦向「勇者队伍」道别，下定决心要以探索者的身份重新出发，独自一人展开行动。  遗落的记忆、对抗命运不公的力量……一段又一段全新的邂逅与伙伴们，这一切将彻底改写欧伦的命运。为了守护重要的伙伴，这名被称作究极「泛而不精」的男人，朝着最强「万能者」的目标一路挺进。 大逆转的异世界王道奇幻故事，就此开幕！  もう『器用貧乏』なんて言わせない！ いつか『万能者』と言われる探索者になってやる！  ある日のこと…… 所属している「勇者パーティ」のリーダーであり、幼なじみのオリヴァーから 実力不足を理由に追放を言い渡されたオルン・ドゥーラ。 パーティのために【剣士】から【付与術士】へとコンバートし、 独自に開発した魔術で仲間をサポートしてきたオルンにとっては到底、 納得のいくものではなかった。  しかし、苦楽を共にしてきたはずの仲間からも『器用貧乏』だとバカにされ、 すでに後任者も決まっているという。 失意のなか、「勇者パーティ」に別れを告げたオルンは探索者としての決意を新たに、 ソロ活動を始めるのだが……。  抜け落ちた記憶… 理不尽さへと立ち向かう力… 新たなる出会いの数々が、オルンの運命を大きく変える。  大切な仲間を護るため 究極の『器用貧乏』は、最強の『万能者』を目指して突き進む。  大逆転の異世界王道ファンタジーが開幕！...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">轻小说改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">奇幻</span><span class="tag meta-tag">战斗</span><span class="tag meta-tag">小说改</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E5%8B%87%E8%80%85%E3%83%91%E3%83%BC%E3%83%86%E3%82%A3%E3%82%92%E8%BF%BD%E3%81%84%E5%87%BA%E3%81%95%E3%82%8C%E3%81%9F%E5%99%A8%E7%94%A8%E8%B2%A7%E4%B9%8F%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://kiyou-bimbou.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/541336" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="313" 
+         data-score="4.6"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本|奇幻|战斗">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/86/7c/543772_Io88u.jpg" loading="lazy" alt="死亡账号">
+            <div class="score-badge">★ 4.6</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="死亡账号">
+                <span class="title-cn">死亡账号</span>
+                <span class="title-jp">デッドアカウント</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月10日</span>
+                <span>🔥 313 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 斉藤啓也</p>
+                <p><strong>音乐:</strong> 井内啓二</p>
+                <p><strong>主题歌演出:</strong> 五十嵐ハル / 金子みゆ</p>
+            </div>
+
+            <p class="summary">死者のSNSアカウントって どうなると思う？  未練を残した亡者のアカウントデッドアカウントは、やがてデジタルの幽霊――化け垢として 現世へ蘇る……。  縁城蒼吏は、妹・緋里の治療費を稼ぐため、炎上系配信者『煽りんご』として日々配信活動をしていた。 しかし、とあるきっかけで電能に開眼した縁城は、怪しい噂の絶えない『弥電学園みでんがくえん』へと連れられる。 そこはインターネットの普及と共にデジタル化してしまった幽霊を祓う、新時代の霊媒師を育てる学園だった！  燃やして叩いて祓う、現代式 除霊バトルアクション開幕！...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">奇幻</span><span class="tag meta-tag">战斗</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E3%83%87%E3%83%83%E3%83%89%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://dead-account.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/543772" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="123" 
+         data-score="4.8"
+         data-origin="轻小说改"
+         data-tags="轻小说改|TV|日本|奇幻|冒险|小说改">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/b7/ce/544106_S3Ua7.jpg" loading="lazy" alt="转生之后的我变成了龙蛋">
+            <div class="score-badge">★ 4.8</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="转生之后的我变成了龙蛋">
+                <span class="title-cn">转生之后的我变成了龙蛋</span>
+                <span class="title-jp">転生したらドラゴンの卵だった</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月10日</span>
+                <span>🔥 123 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 高村雄太</p>
+                
+                <p><strong>主题歌演出:</strong> Sizuk（AYAME） / 導凰&朔雀</p>
+            </div>
+
+            <p class="summary">目が覚めると、そこは見知らぬ森だった。 どうやらここは俺の知らないファンタジー世界らしい。 周囲を見渡せば、おっかない異形の魔獣だらけ。自分の姿を見てみたら、そこには…・・・って、オイ！ 俺、卵に転生したっていうのかよっ！？ 進化先にドラゴンとはあるものの、そもそも卵から孵るには魔獣を狩ってLVを上げなきゃいけないっぽい。 戦うなんて絶対無理！だって俺、卵じゃああぁああああん！！ なんとか進化はできたものの、せっかく出会えた人間からは“モンスター認定”される始末。 俺はただ、人間と仲良くなりたいだけなんだよおおおおお！！ いつだって絶体絶命！ ドラゴンの卵に転生してしまった<イルシア＞の二転三転、ころころ転がる冒険の日々が始まる！！...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">轻小说改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">奇幻</span><span class="tag meta-tag">冒险</span><span class="tag meta-tag">小说改</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E8%BB%A2%E7%94%9F%E3%81%97%E3%81%9F%E3%82%89%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3%E3%81%AE%E5%8D%B5%E3%81%A0%E3%81%A3%E3%81%9F%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://doratama-anime.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/544106" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="1089" 
+         data-score="5.7"
+         data-origin="漫画改"
+         data-tags="漫画改|校园|TV|恋爱|日本">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/8d/2d/544109_U7B7C.jpg" loading="lazy" alt="午夜的倾心旋律">
+            <div class="score-badge">★ 5.7</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="午夜的倾心旋律">
+                <span class="title-cn">午夜的倾心旋律</span>
+                <span class="title-jp">真夜中ハートチューン</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月6日</span>
+                <span>🔥 1089 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 高橋雅之</p>
+                
+                <p><strong>主题歌演出:</strong> 星街すいせい / Soala</p>
+            </div>
+
+            <p class="summary">深夜，独自一人躺在床上──唯有妳的声音拯救了我。  身為山吹财阀的继承者，在所有事情上都以完美為目标的山吹有栖，正在寻找让自己变成100％完美所欠缺的「最后1％」。而那「最后1％」，就是他几乎每晚都在收听的广播节目《午夜的倾心旋律》裡，那位负责配信的少女──「阿波罗」。然而到了国一结束前，阿波罗却在没有对有栖说任何一句话的情况下，突然停止了配信。  到了高二的春天，有栖精心盘算一番，成功成為从女校改制為男女合校的「枫林高中」的学生。对于长相成谜、本名不详的阿波罗，他手上的缐索只有一个──「声音」。 某天，在一道让他感到无比耳熟的声音引导之下，有栖一路追随著那道声音奔跑，最后冲进的地方，正是「播音社」。而在那裡，聚集著四位怀抱「想要从事声音相关工作」梦想的少女。 以成為歌手為目标的井之华六花；梦想当上声优的日芽川宁宁；以VTuber身分活动的雾乃依子；立志成為播音员的雨月忍。然而，这四个少女身上，全都看得到阿波罗的影子──！？ 有栖宣言，自己要替四个人全员实现各自与「声音」有关的梦想。这一切，都是為了履行过去与阿波罗之间立下的约定……  一心追逐梦想的少女们，还有山吹有栖。 他们所交织而成的「声音」物语，就此?幕！    [简介原文] 深夜１人ベッドの上―― キミの声だけが救いだった  財閥の御曹司であり、全てにおいて完璧を目指す山吹有栖は、 100％完璧になるために必要な『あと１％』を探している。 それは毎晩のように聞いていたラジオ『真夜中ハートチューン』の 配信者『アポロ』。 しかし、彼女は中１の終わり、有栖に何も告げずに突然配信をやめてしまった。  そして高校２年生の春。 有栖は策を巡らし、女子高から共学化した楓林高校の生徒になる。 顔も本名も知らないアポロの手がかりはただひとつ――『声』。 ある日、聞き覚えのある声に導かれ、有栖が駆け込んだ先は放送部。 そこには“声に関わる仕事”を夢見る４人の少女がいた。  歌手を目指す井ノ華六花。 声優になりたい日芽川寧々。 VTuberとして活動する霧乃イコ。 アナウンサー志望の雨月しのぶ。 ところが、どの少女にもアポロの面影があって――!?  有栖は4人全員の『声』の夢を叶えると宣言する。 かつて交わしたアポロとの約束を果たすため―― ひたむきに夢を追う少女たちと有栖の『声』物語開幕！...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">校园</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">恋爱</span><span class="tag meta-tag">日本</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E7%9C%9F%E5%A4%9C%E4%B8%AD%E3%83%8F%E3%83%BC%E3%83%88%E3%83%81%E3%83%A5%E3%83%BC%E3%83%B3%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://mayochu-anime.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/544109" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="281" 
+         data-score="5.5"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本|奇幻|战斗">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/31/75/544372_CP9Lp.jpg" loading="lazy" alt="勇者之屑">
+            <div class="score-badge">★ 5.5</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="勇者之屑">
+                <span class="title-cn">勇者之屑</span>
+                <span class="title-jp">勇者のクズ</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月10日</span>
+                <span>🔥 281 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> ウシロシンジ</p>
+                <p><strong>音乐:</strong> 末廣健一郎</p>
+                <p><strong>主题歌演出:</strong> TOOBOE / 紫今</p>
+            </div>
+
+            <p class="summary">21世紀なかば、東京の裏社会は、エーテル（魔力）強化手術で《魔王》となったマフィアたちに支配されていた。  この魔王たちを倒す賞金稼ぎ──それがすなわち《勇者》である！  勇者は、《Ｅ３》(イースリー)という薬剤でエーテル能力を強化して魔王に対抗。 その殺傷行為は合法化され、勇者はまさに”人殺し”の職業となった。  そんな中、フリーランスの勇者《死神》ヤシロのもとに、自称「弟子」が押しかけてくる。 それは、勇者見習いの女子高生･城ヶ峰。 しぶしぶ彼女を受け入れたヤシロは、ロクでもない事件に巻き込まれていく！  クズの「師匠」と自称「弟子」　弩級現代異能アクションの幕が開く！...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">奇幻</span><span class="tag meta-tag">战斗</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E5%8B%87%E8%80%85%E3%81%AE%E3%82%AF%E3%82%BA%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://yushanokuzu.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/544372" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="61" 
+         data-score="4.7"
+         data-origin="漫画改"
+         data-tags="漫画改|校园|TV|恋爱|日本">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/43/98/548195_raxXD.jpg" loading="lazy" alt="终究、与你相恋。 第二季">
+            <div class="score-badge">★ 4.7</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="终究、与你相恋。 第二季">
+                <span class="title-cn">终究、与你相恋。 第二季</span>
+                <span class="title-jp">どうせ、恋してしまうんだ。 第2期</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月8日</span>
+                <span>🔥 61 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 山元隼一</p>
+                <p><strong>音乐:</strong> 井内啓二</p>
+                
+            </div>
+
+            <p class="summary">2020年7月1日。高校2年生の水帆は、最悪な17歳の誕生日を迎えていた。憧れの先輩に近づくチャンスはなくなるし、親には誕生日をすっかり忘れられているし……。しかも未知の感染症の流行で、部活の大会や修学旅行も中止になって、「私には“キラキラした青春”なんてない」──そう思っていた。しかしそんな矢先、幼なじみの輝月から突然、“彼氏候補宣言”をされる。輝月の行動をきっかけに、深からも想いを告げられ、戸惑うばかりの水帆。さらに、藍と周吾もそれぞれの恋に向かって動き始め5人の関係性が崩れ始める──。家族のように育った4人の幼なじみの男の子と、主人公の西野水帆との恋愛模様を描いた青春ストーリー。...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">校园</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">恋爱</span><span class="tag meta-tag">日本</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E3%81%A9%E3%81%86%E3%81%9B%E3%80%81%E6%81%8B%E3%81%97%E3%81%A6%E3%81%97%E3%81%BE%E3%81%86%E3%82%93%E3%81%A0%E3%80%82%20%E7%AC%AC2%E6%9C%9F%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://koishima-pr.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/548195" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="2776" 
+         data-score="7.6"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本|运动">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/0c/08/548818_iLSG6.jpg" loading="lazy" alt="金牌得主 第二季">
+            <div class="score-badge">★ 7.6</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="金牌得主 第二季">
+                <span class="title-cn">金牌得主 第二季</span>
+                <span class="title-jp">メダリスト 第2期</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月24日</span>
+                <span>🔥 2776 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 山本靖貴</p>
+                <p><strong>音乐:</strong> 林ゆうき</p>
+                <p><strong>主题歌演出:</strong> HANA / Conton Candy</p>
+            </div>
+
+            <p class="summary">怀揣着各自对花样滑冰的执念和梦想，结束祈与明浦路司以「选手与教练」的身份相遇。 祈以成为荣耀的「金牌得主」为目标，在名港杯与西日本中小学生大赛中取得名次，通过等级测试后，终于获得了与「天才少女」狼嵜光同级竞技的资格。 接下来的目标，是决定了全日本锦标赛参赛名额的中部区域大赛。 在众多新对手的包围中，祈将证明自己才是最耀眼的花滑选手──！    [简介原文] それぞれにフィギュアスケートへの強い夢を抱き、 「選手とコーチ」として巡り会った結束いのりと明浦路司。  栄光の“メダリスト”を目指すいのりは 名港杯と西日本小中学生大会で実績を積み、バッジテストを経て、 ついに「天才少女」狼嵜光と同じランクで競い合う資格を手にする。  次の目標は、全日本選手権への出場をかけた中部ブロック大会。  新たなライバルたちの中で、いのりは自らが一番に輝けることを証明する──！...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">运动</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E3%83%A1%E3%83%80%E3%83%AA%E3%82%B9%E3%83%88%20%E7%AC%AC2%E6%9C%9F%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://medalist-pr.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/548818" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="500" 
+         data-score="6"
+         data-origin="漫画改"
+         data-tags="漫画改|校园|TV|恋爱|日本">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/c9/03/549654_I8IY6.jpg" loading="lazy" alt="和青梅竹马之间不会有恋爱喜剧">
+            <div class="score-badge">★ 6</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="和青梅竹马之间不会有恋爱喜剧">
+                <span class="title-cn">和青梅竹马之间不会有恋爱喜剧</span>
+                <span class="title-jp">幼馴染とはラブコメにならない</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月5日</span>
+                <span>🔥 500 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 桑原智</p>
+                <p><strong>音乐:</strong> 伊藤翼、ZENTA、やしきん</p>
+                <p><strong>主题歌演出:</strong> HoneyWorks meets 水萌汐・火威灯・月見るな・日向春（CV：久住琳・芹澤優・平塚紗依・山本悠有希） / 小玉ひかり</p>
+            </div>
+
+            <p class="summary">昵称「英雄」的界世之介是个高一男生，现在单身没女友。最爱的就是恋爱喜剧，尤其是「和青梅竹马谈恋爱的恋爱喜剧」，简直看得欲罢不能。 这样的英雄，眼下最大的烦恼，就是两个青梅竹马「汐」和「灯」实在太可爱了！然而，英雄也很清楚一件事……那就是：「现实中的青梅竹马，是不会变成恋爱喜剧的。」但是，当事人「汐」和「灯」的心意，其实全都指向英雄……！  全员女主角都是青梅竹马！ 让人心急如焚、又纠结得要命，但同时又让人看得心头一热！ 「最新世代的青梅竹马恋爱喜剧」，正式开幕！    [简介原文] 高校生男子・えーゆーの悩み。それは、二人の幼馴染「しお」と「あかり」が可愛すぎること! 向こうにその気はないのに、俺だけがオトナになった二人をエッチな目で見てるなんてバレたら…ハズすぎる! 一方、実は二人もえーゆーのことが…!? ヒロイン全員、幼馴染!! じれったい! ややこしい!! けど幼馴染って超最高っ!!! 高校生男子・えーゆーの悩み。それは、二人の幼馴染「しお」と「あかり」が可愛すぎること! 向こうにその気はないのに、俺だけがオトナになった二人をエッチな目で見てるなんてバレたら…ハズすぎる! 一方、実は二人もえーゆーのことが…!? ヒロイン全員、幼馴染。じれったすぎる三角関係!...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">校园</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">恋爱</span><span class="tag meta-tag">日本</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E5%B9%BC%E9%A6%B4%E6%9F%93%E3%81%A8%E3%81%AF%E3%83%A9%E3%83%96%E3%82%B3%E3%83%A1%E3%81%AB%E3%81%AA%E3%82%89%E3%81%AA%E3%81%84%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://anime-osalove.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/549654" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="1635" 
+         data-score="7.5"
+         data-origin="漫画改"
+         data-tags="漫画改|日本|战斗|冒险|青年向|WEB">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/31/06/551918_k5ppS.jpg" loading="lazy" alt="飙马野郎 JOJO的奇妙冒险">
+            <div class="score-badge">★ 7.5</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="飙马野郎 JOJO的奇妙冒险">
+                <span class="title-cn">飙马野郎 JOJO的奇妙冒险</span>
+                <span class="title-jp">スティール・ボール・ラン ジョジョの奇妙な冒険</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年3月19日</span>
+                <span>🔥 1635 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 木村泰大・髙橋秀弥</p>
+                
+                
+            </div>
+
+            <p class="summary">1890年のアメリカ。 総距離約4,000マイル、賞金総額5,000万ドル、 人類史上初の乗馬による北米大陸横断レース 「スティール・ボール・ラン」が 開催されようとしていた。 かつて天才騎手と呼ばれながらも、 半身不随となり、失意の中にいた ジョニィ･ジョースター。 彼はこのレースで優勝を目論む謎のアウトロー、 ジャイロ･ツェペリが引き起こした 不思議な現象に希望を見出し、 ｢スティール･ボール･ラン｣への参加を決意する。  二人はそれぞれの思惑を胸に協力関係を結び、過酷な冒険へと踏み出す。...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">战斗</span><span class="tag meta-tag">冒险</span><span class="tag meta-tag">青年向</span><span class="tag meta-tag">WEB</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E3%82%B9%E3%83%86%E3%82%A3%E3%83%BC%E3%83%AB%E3%83%BB%E3%83%9C%E3%83%BC%E3%83%AB%E3%83%BB%E3%83%A9%E3%83%B3%20%E3%82%B8%E3%83%A7%E3%82%B8%E3%83%A7%E3%81%AE%E5%A5%87%E5%A6%99%E3%81%AA%E5%86%92%E9%99%BA%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://jojo-portal-anime.com/sbr/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/551918" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="257" 
+         data-score="6"
+         data-origin="轻小说改"
+         data-tags="轻小说改|TV|日本|小说改">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/cd/8c/554013_MGo2g.jpg" loading="lazy" alt="安逸领主的愉快领地防卫～以生产系魔术将无名小村打造成最强要塞都市～">
+            <div class="score-badge">★ 6</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="安逸领主的愉快领地防卫～以生产系魔术将无名小村打造成最强要塞都市～">
+                <span class="title-cn">安逸领主的愉快领地防卫～以生产系魔术将无名小村打造成最强要塞都市～</span>
+                <span class="title-jp">お気楽領主の楽しい領地防衛～生産系魔術で名もなき村を最強の城塞都市に～</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月10日</span>
+                <span>🔥 257 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 畳谷哲也</p>
+                <p><strong>音乐:</strong> うたたね歌菜</p>
+                <p><strong>主题歌演出:</strong> 中島怜 / 大渕野々花</p>
+            </div>
+
+            <p class="summary">侯爵家の四男として異世界に転生したヴァンは、 幼いころから神童と呼ばれ将来を期待されていた。  だが8歳の時に授かった力は、 その世界で“役立たず”とされている「生産系魔術」だった！  そのせいでヴァンは貴族に相応しくないと父親により失格の烙印を押され生家を追放。 名もなき辺境の村の領主として赴任することに。  しかしハズレ適性と呼ばれていた生産系魔術は、 材料さえあれば何でも生産できる規格外の可能性を秘めていて……。  「この村を、もっと気楽に楽しく暮らせる、僕好みの場所にしよう！」 小さく貧しい村は、徐々に様々な人が集まる巨大都市へと発展していき――!?...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">轻小说改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">小说改</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E3%81%8A%E6%B0%97%E6%A5%BD%E9%A0%98%E4%B8%BB%E3%81%AE%E6%A5%BD%E3%81%97%E3%81%84%E9%A0%98%E5%9C%B0%E9%98%B2%E8%A1%9B%EF%BD%9E%E7%94%9F%E7%94%A3%E7%B3%BB%E9%AD%94%E8%A1%93%E3%81%A7%E5%90%8D%E3%82%82%E3%81%AA%E3%81%8D%E6%9D%91%E3%82%92%E6%9C%80%E5%BC%B7%E3%81%AE%E5%9F%8E%E5%A1%9E%E9%83%BD%E5%B8%82%E3%81%AB%EF%BD%9E%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://okiraku-ryousyu-anime.jp/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/554013" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="417" 
+         data-score="5.4"
+         data-origin="轻小说改"
+         data-tags="轻小说改|百合|TV|日本|战斗|小说改">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/42/f9/555445_YBxml.jpg" loading="lazy" alt="「凭你也想讨伐魔王？」被勇者小队逐出队伍，只好在王都自在过活">
+            <div class="score-badge">★ 5.4</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="「凭你也想讨伐魔王？」被勇者小队逐出队伍，只好在王都自在过活">
+                <span class="title-cn">「凭你也想讨伐魔王？」被勇者小队逐出队伍，只好在王都自在过活</span>
+                <span class="title-jp">「お前ごときが魔王に勝てると思うな」と勇者パーティを追放されたので、王都で気ままに暮らしたい</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月8日</span>
+                <span>🔥 417 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 鎌仲史陽</p>
+                
+                <p><strong>主题歌演出:</strong> PassCode / 田中有紀</p>
+            </div>
+
+            <p class="summary">能力値ゼロという身でありながら、 神のお告げにより勇者パーティに 選ばれてしまったフラム。 唯一持っているのは“反転”という 未だ詳細が分からないスキルだけ。 案の定、戦闘では全く役に立たなかったが、 それでもめげずに パーティのためにと健気に働く。  そんな彼女を、 天才として名高い賢者のジーンは 疎ましく思い、 ことあるごとにいびり続け、 ついには強引に奴隷商へ売り払ってしまう。 そこでも無能として虐げられるフラムは、 挙げ句に余興として モンスターの餌食になろうとしていた。  フラムに用意された選択は二つ。 商人が戯れに用意した、 装備者を死に至らしめる 『呪いの大剣』を手にするか、 このままモンスターに喰い殺されるか。  ――最後まで抗うことを選択したとき、 彼女の人生は反転する。...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">轻小说改</span><span class="tag meta-tag">百合</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">战斗</span><span class="tag meta-tag">小说改</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E3%80%8C%E3%81%8A%E5%89%8D%E3%81%94%E3%81%A8%E3%81%8D%E3%81%8C%E9%AD%94%E7%8E%8B%E3%81%AB%E5%8B%9D%E3%81%A6%E3%82%8B%E3%81%A8%E6%80%9D%E3%81%86%E3%81%AA%E3%80%8D%E3%81%A8%E5%8B%87%E8%80%85%E3%83%91%E3%83%BC%E3%83%86%E3%82%A3%E3%82%92%E8%BF%BD%E6%94%BE%E3%81%95%E3%82%8C%E3%81%9F%E3%81%AE%E3%81%A7%E3%80%81%E7%8E%8B%E9%83%BD%E3%81%A7%E6%B0%97%E3%81%BE%E3%81%BE%E3%81%AB%E6%9A%AE%E3%82%89%E3%81%97%E3%81%9F%E3%81%84%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://omagoto.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/555445" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="63" 
+         data-score="6"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/a3/59/555772_2Z2L2.jpg" loading="lazy" alt="地狱老师 第2部分">
+            <div class="score-badge">★ 6</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="地狱老师 第2部分">
+                <span class="title-cn">地狱老师 第2部分</span>
+                <span class="title-jp">地獄先生ぬ～べ～ 第2クール</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月7日</span>
+                <span>🔥 63 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 大石康之</p>
+                <p><strong>音乐:</strong> Evan Call</p>
+                
+            </div>
+
+            <p class="summary">不可解な怪奇現象が多発している童守町。 子どもたちを守るため、童守小学校に一人の教師が赴任してきた。 5 年 3 組担任の鵺野鳴介、通称ぬ～べ～。 普段は優しく、ちょっと抜けている彼には、日本でただ一人の霊能力教師という、もう一つの顔があった。 その左手には鬼が宿るという噂も…!? 生徒たちを襲う学園七不思議、妖怪や悪霊に、地獄からきた正義の使者が立ち向かう! オカルティックヒーローアクション開幕!  中央で手を取りあおうとしているのは、少年時代のぬ～べ～とその時の担任教師・美奈子先生。そして襲い掛かろうとするような背後の大きな鬼は、地獄に住む最強の鬼・覇鬼（バキ）。必死に訴えかけるような表情のぬ～べ～からは、物語の壮絶さが感じられます。 少年時代に何があったのか…、美奈子先生とは…、広や郷子たちも知らない“鬼の手の秘密”、そしてぬ～べ～の過去が第2クールでは明らかになります…！...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E5%9C%B0%E7%8D%84%E5%85%88%E7%94%9F%E3%81%AC%EF%BD%9E%E3%81%B9%EF%BD%9E%20%E7%AC%AC2%E3%82%AF%E3%83%BC%E3%83%AB%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://nube-anime.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/555772" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="218" 
+         data-score="5.9"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本|日常">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/74/e9/556874_BhJgb.jpg" loading="lazy" alt="29岁单身冒险家的日常">
+            <div class="score-badge">★ 5.9</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="29岁单身冒险家的日常">
+                <span class="title-cn">29岁单身冒险家的日常</span>
+                <span class="title-jp">29歳独身中堅冒険者の日常</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月7日</span>
+                <span>🔥 218 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 福島利規</p>
+                <p><strong>音乐:</strong> 鈴木暁也、Johannes Nilsson[ヨハネス・ニルソン]、高本愛海（Team-MAX）</p>
+                <p><strong>主题歌演出:</strong> HoneyWorks feat.Hanon / HoneyWorks feat.Kotoha</p>
+            </div>
+
+            <p class="summary">幼少期を貧民街で過ごし、 生きるため必死に強さを求めてきたシノノメ・ハジメ。 今はコマイ村の村付き冒険者として、悠々自適な日々を送っていた。  ある日のクエストで ダンジョンに潜ると、 そこには最弱モンスターのスライムに食べられかけている少女が！  少女の名前はリルイ。 生きるために一人でダンジョンに 踏み入っていた。 親に捨てられ、行くあてがない彼女を放っておけないハジメは、 リルイを村に連れ帰って 一緒に暮らすことに!?...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">日常</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=29%E6%AD%B3%E7%8B%AC%E8%BA%AB%E4%B8%AD%E5%A0%85%E5%86%92%E9%99%BA%E8%80%85%E3%81%AE%E6%97%A5%E5%B8%B8%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://anime-29sai-dokushin.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/556874" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="103" 
+         data-score="5.4"
+         data-origin="漫画改"
+         data-tags="漫画改|校园|TV|恋爱|日本|少女向">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/fd/2b/557531_3cHCD.jpg" loading="lazy" alt="皎洁迎宵之月">
+            <div class="score-badge">★ 5.4</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="皎洁迎宵之月">
+                <span class="title-cn">皎洁迎宵之月</span>
+                <span class="title-jp">うるわしの宵の月</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月11日</span>
+                <span>🔥 103 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 丸山裕介</p>
+                
+                <p><strong>主题歌演出:</strong> UNISON SQUARE GARDEN（OP&ED）</p>
+            </div>
+
+            <p class="summary">高校1年生の滝口宵は、誰もが憧れる存在。整った容姿、まっすぐな心。“お姫様というより、ヒーローか王子がしっくり来る”……自分も、周囲もそう思っていた。「好きで王子やってるわけじゃないんだけど…」だけど、ある日、現れたのはもうひとりの「王子」。同じ学校の先輩・市村琥珀に言われた一言が、宵の世界を揺らし始める。「……あんた、めちゃくちゃ美しいな」急接近したふたりの間に芽生えるのは、友情なのか恋なのか……。ともに「王子」と呼ばれる男女が紡ぐ、等身大の青春ラブストーリー。...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">校园</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">恋爱</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">少女向</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E3%81%86%E3%82%8B%E3%82%8F%E3%81%97%E3%81%AE%E5%AE%B5%E3%81%AE%E6%9C%88%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://uruwashi-anime.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/557531" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="1001" 
+         data-score="6.1"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/f0/78/558296_W25j2.jpg" loading="lazy" alt="和机器人啪啪啪能算在经验次数里吗？？">
+            <div class="score-badge">★ 6.1</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="和机器人啪啪啪能算在经验次数里吗？？">
+                <span class="title-cn">和机器人啪啪啪能算在经验次数里吗？？</span>
+                <span class="title-jp">アンドロイドは経験人数に入りますか？？</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月9日</span>
+                <span>🔥 1001 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> ネコB</p>
+                <p><strong>音乐:</strong> ZincP</p>
+                
+            </div>
+
+            <p class="summary">『あたしの人生、終わりかも……』 大手電機メーカーで働く”津田あかね（28）”が うっかり酔った勢いで購入してしまったのは、 所持しているだけで重罪確定！？ 違法製造された大人用ロマンスロイドの ”撫子”だった！？  撫子に翻弄されるあかねだったが、 色々とハイスペックな撫子に、 あかねは翻弄されつつも惹かれていき……？  おひとり様OLとアンドロイド、 二人（？）のウフフな同棲生活スタート！！...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E3%82%A2%E3%83%B3%E3%83%89%E3%83%AD%E3%82%A4%E3%83%89%E3%81%AF%E7%B5%8C%E9%A8%93%E4%BA%BA%E6%95%B0%E3%81%AB%E5%85%A5%E3%82%8A%E3%81%BE%E3%81%99%E3%81%8B%EF%BC%9F%EF%BC%9F%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://hanisuka.deregula.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/558296" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="609" 
+         data-score="6.1"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本|日常">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/49/a0/562430_8dO8T.jpg" loading="lazy" alt="能帮我弄干净吗？">
+            <div class="score-badge">★ 6.1</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="能帮我弄干净吗？">
+                <span class="title-cn">能帮我弄干净吗？</span>
+                <span class="title-jp">綺麗にしてもらえますか。</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月5日</span>
+                <span>🔥 609 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 大西健太</p>
+                <p><strong>音乐:</strong> 秩父英里</p>
+                <p><strong>主题歌演出:</strong> ゆう。 / 清浦夏実</p>
+            </div>
+
+            <p class="summary">温泉が湧き出る海辺の街・熱海。  小さなクリーニング店を営む金目綿花奈さんは、 明るくて働き者で温泉が大好きな女の子。 彼女と彼女を巡る人々が織りなす、ひきこもごもストーリー、始まります。...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">日常</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E7%B6%BA%E9%BA%97%E3%81%AB%E3%81%97%E3%81%A6%E3%82%82%E3%82%89%E3%81%88%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://kinishite.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/562430" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="55" 
+         data-score="6"
+         data-origin="原创"
+         data-tags="原创|TV|日本|奇幻|战斗">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/6f/40/564175_Jf5lx.jpg" loading="lazy" alt="铠真传 武士军团">
+            <div class="score-badge">★ 6</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="铠真传 武士军团">
+                <span class="title-cn">铠真传 武士军团</span>
+                <span class="title-jp">鎧真伝サムライトルーパー</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月6日</span>
+                <span>🔥 55 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 藤田陽一</p>
+                <p><strong>音乐:</strong> 片山修志（Team-MAX）</p>
+                <p><strong>主题歌演出:</strong> blank paper / ONE OR EIGHT</p>
+            </div>
+
+            <p class="summary">鎧が照らす！ 闇夜を照らす！ サムライトルーパー出陣！  かつて人間界を恐怖に陥れた妖邪界の封印が解けると、 数多の妖邪兵が侵攻を開始した。  人類の危機に駆けつけたのは、若き五人のサムライたち。 その名は、サムライトルーパー！！  彼らの闘いの日々が、新たに幕を開ける！...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">原创</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">奇幻</span><span class="tag meta-tag">战斗</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E9%8E%A7%E7%9C%9F%E4%BC%9D%E3%82%B5%E3%83%A0%E3%83%A9%E3%82%A4%E3%83%88%E3%83%AB%E3%83%BC%E3%83%91%E3%83%BC%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://www.samurai-trooper.net/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/564175" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="279" 
+         data-score="5.6"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本|奇幻|日常">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/b4/0f/565416_a994t.jpg" loading="lazy" alt="魔王的女儿太温柔了！！">
+            <div class="score-badge">★ 5.6</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="魔王的女儿太温柔了！！">
+                <span class="title-cn">魔王的女儿太温柔了！！</span>
+                <span class="title-jp">魔王の娘は優しすぎる!!</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月7日</span>
+                <span>🔥 279 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 太田雅彦</p>
+                <p><strong>音乐:</strong> 三澤康広</p>
+                <p><strong>主题歌演出:</strong> 石原夏織 / ジャヒー（CV.大橋彩香）、ドゥ（CV.久野美咲）、アーリマン（CV.大塚明夫）</p>
+            </div>
+
+            <p class="summary">悪の権化たる魔族たちを束ね、暴力と権力で世界を侵略していった 魔王アーリマン。 だが、そんな魔王がなぜか突然一切の侵略行為をやめてしまった！ 魔界最強の魔王が侵略をやめた理由……それは！  魔王の娘のドゥが優しすぎるから！！  魔族として生まれながらもドゥの優しさはまさに天井知らず。その優しさと言ったら、凶悪な魔族も、凶暴な魔物も、奴隷の人間も、不倶戴天の敵である天使ですらもホワホワに癒やしてしまうほど。  娘がこんな調子では、魔王も心配で心配で侵略どころではなくなったのだ。  苦悩する魔王の姿に、側近のジャヒーはドゥを立派な魔族にしてみせると決意し、様々な試練を与えることに。だが、その試練がますますドゥの優しさを広げることになることをジャヒーはまだ知らない……。  そしてそんなドゥの優しさは、この決して優しくない世界に小さな波紋を起こして――...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">奇幻</span><span class="tag meta-tag">日常</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E9%AD%94%E7%8E%8B%E3%81%AE%E5%A8%98%E3%81%AF%E5%84%AA%E3%81%97%E3%81%99%E3%81%8E%E3%82%8B!!%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://maomusu.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/565416" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="82" 
+         data-score="3.7"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本|日常|青年向">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/f9/21/565444_jNexE.jpg" loading="lazy" alt="打工仔的拷问日常">
+            <div class="score-badge">★ 3.7</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="打工仔的拷问日常">
+                <span class="title-cn">打工仔的拷问日常</span>
+                <span class="title-jp">拷問バイトくんの日常</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月4日</span>
+                <span>🔥 82 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 追崎史敏</p>
+                <p><strong>音乐:</strong> 藤澤健至（Team-MAX）</p>
+                <p><strong>主题歌演出:</strong> GRANRODEO / 寺島拓篤</p>
+            </div>
+
+            <p class="summary">这里是一个杀人与拷问合法化的世界。 在众多「拷问承包公司」之中，有一家只以恶人为对象的业界顶尖良心企业──「生命之水股份有限公司」，而在这里工作的是四位打工少年。  贴心照顾人的前辈打工仔有： 全能且能与任何人打成一片的王牌──「赛罗」 人人憧憬的拷问界传奇──「席乌」  而备受期待的新进打工仔则是： 可爱又元气、努力不懈──「米克」 认真且心地善良的大学生──「休」  他们就在这个充满家庭感的职场里，今天也轻松融洽地完成各自的拷问工作。除此之外，还有专门收烂摊子的「回收业者」、负责清理善后的「清洁工」……甚至是「杀手」！？  各种有趣又可靠的专业人士热闹登场！与个性鲜明的伙伴们共度的每一天，意外地让人觉得相当舒服自在。 带点黑暗风格的职场喜剧，现在正式打卡开工啦！★  ここは、殺しや拷問が合法化された世界　数ある＜拷問請負業社＞の中でも悪人のみを対象とする業界有数のホワイト企業「株式会社スピリタス」　そこで働く、4人のバイトくんたち　面倒見が良い先輩バイトは何でもできて、誰とでも仲良くなれるエース・セロ　みんながあこがれる拷問界の生きるレジェンド・シウ　そして、期待の新人バイト キュートで元気な頑張り屋・ミケ　マジメで心優しい大学生・ヒュー　彼らはアットホームな職場で今日もゆる～く仲良くおつとめを果たします　ほかにも屑屋に掃除屋……そしてまさかの殺し屋！？　ゆかいで頼れる専門業者さんがわいわい登場っ　個性豊かな仲間たちとの毎日は、意外にも居心地がよくて──ちょっぴりダークなお仕事コメディ、始業です☆...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">日常</span><span class="tag meta-tag">青年向</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E6%8B%B7%E5%95%8F%E3%83%90%E3%82%A4%E3%83%88%E3%81%8F%E3%82%93%E3%81%AE%E6%97%A5%E5%B8%B8%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://goumonbaitokun.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/565444" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="15" 
+         data-score="3.9"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本|动态漫画">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/7b/0f/567362_Fc0ZT.jpg" loading="lazy" alt="为了我最爱的义兄，我要长命百岁！">
+            <div class="score-badge">★ 3.9</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="为了我最爱的义兄，我要长命百岁！">
+                <span class="title-cn">为了我最爱的义兄，我要长命百岁！</span>
+                <span class="title-jp">最推しの義兄を愛でるため、長生きします！</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月3日</span>
+                <span>🔥 15 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 森下裕介</p>
+                
+                
+            </div>
+
+            <p class="summary">貧乏貴族の息子に転生していたアルバ。  母が再婚した公爵家で紹介された義兄は、前世の「最推し」であるオルシスだった。  「俺って最推しの義弟になったの!?」 と喜んだのも束の間、愛する義兄の笑顔が失われる原因が自分にあることを思い出し…!?  迫りくる運命を避けるため、そして最推しを愛で続けるため、 転生愛され令息が、全力で運命を捻じ曲げる！  シリーズ累計17万部を突破した人気作が送る、あったかほのぼの異世界転生ボーイズライフ！...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">动态漫画</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E6%9C%80%E6%8E%A8%E3%81%97%E3%81%AE%E7%BE%A9%E5%85%84%E3%82%92%E6%84%9B%E3%81%A7%E3%82%8B%E3%81%9F%E3%82%81%E3%80%81%E9%95%B7%E7%94%9F%E3%81%8D%E3%81%97%E3%81%BE%E3%81%99%EF%BC%81%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://animationid.com/saioshi/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/567362" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="37" 
+         data-score="5.3"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本|战斗">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/45/c8/567417_CE6zb.jpg" loading="lazy" alt="正义使者 -我的英雄学院之非法英雄- 第二季">
+            <div class="score-badge">★ 5.3</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="正义使者 -我的英雄学院之非法英雄- 第二季">
+                <span class="title-cn">正义使者 -我的英雄学院之非法英雄- 第二季</span>
+                <span class="title-jp">ヴィジランテ -僕のヒーローアカデミア ILLEGALS- 第2期</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月5日</span>
+                <span>🔥 37 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 鈴木健一</p>
+                
+                
+            </div>
+
+            <p class="summary">暂无简介...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">战斗</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E3%83%B4%E3%82%A3%E3%82%B8%E3%83%A9%E3%83%B3%E3%83%86%20-%E5%83%95%E3%81%AE%E3%83%92%E3%83%BC%E3%83%AD%E3%83%BC%E3%82%A2%E3%82%AB%E3%83%87%E3%83%9F%E3%82%A2%20ILLEGALS-%20%E7%AC%AC2%E6%9C%9F%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://vigilante-anime.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/567417" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="127" 
+         data-score="4.3"
+         data-origin="轻小说改"
+         data-tags="轻小说改|TV|恋爱|日本|少女向|小说改">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/7f/69/568174_7EEZO.jpg" loading="lazy" alt="被邻国王子溺爱的反派女主">
+            <div class="score-badge">★ 4.3</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="被邻国王子溺爱的反派女主">
+                <span class="title-cn">被邻国王子溺爱的反派女主</span>
+                <span class="title-jp">悪役令嬢は隣国の王太子に溺愛される</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月11日</span>
+                <span>🔥 127 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 浜名孝行</p>
+                <p><strong>音乐:</strong> 宝野聡史、中野香梨</p>
+                <p><strong>主题歌演出:</strong> 高垣彩陽 feat.城田優</p>
+            </div>
+
+            <p class="summary">ティアラローズは思い出します。 乙女ゲーム『ラピスラズリの指輪』に夢中だった、前世の自分を。 そして、そのゲームの中に転生し、嫌味ったらしくヒロインの邪魔をする 〝悪役令嬢〟になっていることに気がつくのでした。 ヒロインがハルトナイツの攻略を達成したのなら ティアラローズを待ち受けるのは、屈辱の断罪イベントのみ。 でも、そのさなか、隣国の王太子アクアスティードが 颯爽とあらわれ──。 「ティアラローズ嬢、私の妃になっていただけませんか？」 いきなり求婚!? しかもアクアスティードは、前世でプレイできなかった 続編ゲームのメイン攻略キャラで……。 果たしてティアラローズは ハッピーエンドを迎えることができるのか？ 王道溺愛系〝悪役令嬢〟ルートの幕が上がります──！...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">轻小说改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">恋爱</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">少女向</span><span class="tag meta-tag">小说改</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E6%82%AA%E5%BD%B9%E4%BB%A4%E5%AC%A2%E3%81%AF%E9%9A%A3%E5%9B%BD%E3%81%AE%E7%8E%8B%E5%A4%AA%E5%AD%90%E3%81%AB%E6%BA%BA%E6%84%9B%E3%81%95%E3%82%8C%E3%82%8B%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://akudeki-anime.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/568174" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="203" 
+         data-score="5.1"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/ba/d7/583313_qZNGU.jpg" loading="lazy" alt="草莓哀歌">
+            <div class="score-badge">★ 5.1</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="草莓哀歌">
+                <span class="title-cn">草莓哀歌</span>
+                <span class="title-jp">イチゴ哀歌〜雑で生イキな妹と割り切れない兄〜</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月4日</span>
+                <span>🔥 203 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 昆野比遊太</p>
+                <p><strong>音乐:</strong> あいうえおか</p>
+                
+            </div>
+
+            <p class="summary">「帅气哥哥入手！」 这种好事果然没那么容易！ 因父亲再婚而多出来的妹妹，竟然是和自己完全相反的超级辣妹！ 同居后，她还经常把男人带回家，让光太每天都快受不了了，然而某起事件之后，蓝花开始对他提出拥抱，甚至更进一步的要求！ ？  イケメン兄貴ゲット！ とか都合よくいかないかぁ(´-д-)=3 父親の再婚でできた妹は自分とは正反対な ゴリゴリのギャルだった…！ 同居開始後も男を連れ込むなどやりたい放題の藍花に うんざりの光太だったが、ある事件をきっかけにして 彼女からハグやそれ以上を求められるようになってしまい…！？ 生意気ギャルと理屈屋童貞のでこぼこ義兄妹ラブコメ爆誕！！...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E3%82%A4%E3%83%81%E3%82%B4%E5%93%80%E6%AD%8C%E3%80%9C%E9%9B%91%E3%81%A7%E7%94%9F%E3%82%A4%E3%82%AD%E3%81%AA%E5%A6%B9%E3%81%A8%E5%89%B2%E3%82%8A%E5%88%87%E3%82%8C%E3%81%AA%E3%81%84%E5%85%84%E3%80%9C%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://ichigo-aika.af-original.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/583313" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="325" 
+         data-score="5.5"
+         data-origin="轻小说改"
+         data-tags="轻小说改|喜剧|校园|TV|日本|小说改">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/f0/ce/583728_wfZP3.jpg" loading="lazy" alt="非人学生与厌世教师">
+            <div class="score-badge">★ 5.5</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="非人学生与厌世教师">
+                <span class="title-cn">非人学生与厌世教师</span>
+                <span class="title-jp">人外教室の人間嫌い教師</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月10日</span>
+                <span>🔥 325 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 岩永彰</p>
+                <p><strong>音乐:</strong> 宮崎誠</p>
+                <p><strong>主题歌演出:</strong> 大石昌良 / 水月鏡花 (CV. 雨宮天)、尾々守一咲 (CV. 大西沙織)、右左美彗 (CV. 長縄まりあ)、羽根田トバリ (CV. 田辺留依)</p>
+            </div>
+
+            <p class="summary">――ニンゲンなんて嫌いだ。  とある出来事をきっかけに、 人間関係に対してトラウマを持ってしまった 元教師のアラサーニート・人間零。  “生徒想いの先生”をお待ちしております。  もう教師にはならないと考えていた彼だったが、 求人サイトの言葉に導かれ勢いのままに応募。 みるみるうちに面接を通過し、 山中にある自然豊かな学校へ勤めることになる。 しかしそこは、 人外の女の子たちが 人間になるための学校で――!?  彼の前に現れるのは、 人魚族に人狼、ウサギ、鳥……。 なぜ彼女たちは人間になりたいのか？ 彼の嫌いな人間のどこに惹かれたのか？  これは、異世界ファンタジーでも、 人生やり直し転生でもない。 少し変わった学校で、 一人の教師が人間に憧れる人外女子たちと送る 学園“ヒューマン”ドラマである――...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">轻小说改</span><span class="tag meta-tag">喜剧</span><span class="tag meta-tag">校园</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">小说改</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E4%BA%BA%E5%A4%96%E6%95%99%E5%AE%A4%E3%81%AE%E4%BA%BA%E9%96%93%E5%AB%8C%E3%81%84%E6%95%99%E5%B8%AB%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://jingai-kyoshitsu-anime.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/583728" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="23" 
+         data-score="5.7"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本|战斗|动态漫画">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/52/55/584833_OzPPv.jpg" loading="lazy" alt="北斗神拳 拳王军杂兵们的挽歌">
+            <div class="score-badge">★ 5.7</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="北斗神拳 拳王军杂兵们的挽歌">
+                <span class="title-cn">北斗神拳 拳王军杂兵们的挽歌</span>
+                <span class="title-jp">北斗の拳 拳王軍ザコたちの挽歌</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月5日</span>
+                <span>🔥 23 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 三浦大輔（アニメーションディレクター）</p>
+                <p><strong>音乐:</strong> 三浦誠司</p>
+                <p><strong>主题歌演出:</strong> イツカ / The Canbellz</p>
+            </div>
+
+            <p class="summary">199X年。主人公ノブが見つけた就職先は拳王軍で、志望者よりも死亡者が多い危険すぎる職場で、働くことになる。ババアに変装したザコやカサンドラのウイグル獄長、聖帝軍の“汚物は消毒の人”など個性豊かなザコが登場する。...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">战斗</span><span class="tag meta-tag">动态漫画</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E5%8C%97%E6%96%97%E3%81%AE%E6%8B%B3%20%E6%8B%B3%E7%8E%8B%E8%BB%8D%E3%82%B6%E3%82%B3%E3%81%9F%E3%81%A1%E3%81%AE%E6%8C%BD%E6%AD%8C%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://zakoban.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/584833" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="1932" 
+         data-score="7.4"
+         data-origin="轻小说改"
+         data-tags="轻小说改|喜剧|百合|校园|后宫|TV|恋爱|日本|小说改">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/a1/ea/587454_1KdKJ.jpg" loading="lazy" alt="我们不可能成为恋人！绝对不行。 (※似乎可行？) 〜再次闪耀！〜">
+            <div class="score-badge">★ 7.4</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="我们不可能成为恋人！绝对不行。 (※似乎可行？) 〜再次闪耀！〜">
+                <span class="title-cn">我们不可能成为恋人！绝对不行。 (※似乎可行？) 〜再次闪耀！〜</span>
+                <span class="title-jp">わたしが恋人になれるわけないじゃん、ムリムリ!（※ムリじゃなかった!?）〜ネクストシャイン！〜</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月1日</span>
+                <span>🔥 1932 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 内沼菜摘</p>
+                
+                <p><strong>主题歌演出:</strong> クインテット（甘織れな子(CV.中村カンナ)・王塚真唯(CV.大西沙織)・瀬名紫陽花(CV.安齋由香里)・琴紗月(CV.市ノ瀬加那)・小柳香穂(CV.田中貴子)）</p>
+            </div>
+
+            <p class="summary">わたしはわたしを、好きになりたいから！ 陰キャでダメダメだった過去を捨て、高校デビューを果たした少女、 甘織れな子。 運よくカーストトップの陽キャグループに 入ったと思いきや、 何とその中の二人から告白されちゃった！？  学園のスパダリ・王塚真唯と、  学園の天使・瀬名紫陽花さん。  そんな二人の愛を受け止めるなんて、ムリムリ！  返事に悩んでいたら、 香穂ちゃんと一緒にコスプレイベント に出ることに。  友達の頼みを聞くという形で、 告白の返事を保留にするれな子。  でもコスプレを通して香穂ちゃんの『好き』に触れたら、 なにかが自分の中で 変わるような気がして……！  わたしが本当に欲しかったものって、なんだろう。  果たして恋人はムリなのか！？ "ムリじゃなかった"のか！？...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">轻小说改</span><span class="tag meta-tag">喜剧</span><span class="tag meta-tag">百合</span><span class="tag meta-tag">校园</span><span class="tag meta-tag">后宫</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">恋爱</span><span class="tag meta-tag">日本</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E3%82%8F%E3%81%9F%E3%81%97%E3%81%8C%E6%81%8B%E4%BA%BA%E3%81%AB%E3%81%AA%E3%82%8C%E3%82%8B%E3%82%8F%E3%81%91%E3%81%AA%E3%81%84%E3%81%98%E3%82%83%E3%82%93%E3%80%81%E3%83%A0%E3%83%AA%E3%83%A0%E3%83%AA!%EF%BC%88%E2%80%BB%E3%83%A0%E3%83%AA%E3%81%98%E3%82%83%E3%81%AA%E3%81%8B%E3%81%A3%E3%81%9F!%3F%EF%BC%89%E3%80%9C%E3%83%8D%E3%82%AF%E3%82%B9%E3%83%88%E3%82%B7%E3%83%A3%E3%82%A4%E3%83%B3%EF%BC%81%E3%80%9C%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://www.watanare-anime.com/next-shine/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/587454" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="25" 
+         data-score="5.5"
+         data-origin="原创"
+         data-tags="原创|TV|日本">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/49/f9/591584_dp8Kc.jpg" loading="lazy" alt="卡片战斗先导者 Divinez 幻真星战篇">
+            <div class="score-badge">★ 5.5</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="卡片战斗先导者 Divinez 幻真星战篇">
+                <span class="title-cn">卡片战斗先导者 Divinez 幻真星战篇</span>
+                <span class="title-jp">カードファイト!! ヴァンガード Divinez 幻真星戦編</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月10日</span>
+                <span>🔥 25 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 山田卓</p>
+                <p><strong>音乐:</strong> 桑野聖</p>
+                
+            </div>
+
+            <p class="summary">暂无简介...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">原创</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E3%82%AB%E3%83%BC%E3%83%89%E3%83%95%E3%82%A1%E3%82%A4%E3%83%88!!%20%E3%83%B4%E3%82%A1%E3%83%B3%E3%82%AC%E3%83%BC%E3%83%89%20Divinez%20%E5%B9%BB%E7%9C%9F%E6%98%9F%E6%88%A6%E7%B7%A8%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://anime.cf-vanguard.com/vgd/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/591584" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="29" 
+         data-score="0"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/af/c1/593565_gjemm.jpg" loading="lazy" alt="超巡！超条前辈">
+            <div class="score-badge">★ 0</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="超巡！超条前辈">
+                <span class="title-cn">超巡！超条前辈</span>
+                <span class="title-jp">超巡！超条先輩</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年</span>
+                <span>🔥 29 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 山元隼一</p>
+                
+                
+            </div>
+
+            <p class="summary">最強（？）バディが平和を守る！ 超能力ポリスコメディ!!  読心術や千里眼、テレパシーといった ありとあらゆる超能力を駆使する 犯罪捜査のスペシャリスト「超条巡」 柔道の有段者でその怪力から ゴリラの異名をもつ新米警官「一本木直」 最強(？)バディは今日も珍宿の平和を守る...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E8%B6%85%E5%B7%A1%EF%BC%81%E8%B6%85%E6%9D%A1%E5%85%88%E8%BC%A9%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://chojun-anime.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/593565" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="12" 
+         data-score="7"
+         data-origin="漫画改"
+         data-tags="漫画改|日本|动态漫画">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/ed/a7/596843_Cy5dD.jpg" loading="lazy" alt="">
+            <div class="score-badge">★ 7</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="">
+                <span class="title-cn"></span>
+                <span class="title-jp">聖女なのに国を追い出されたので、崩壊寸前の隣国へ来ました シーズン2</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月9日</span>
+                <span>🔥 12 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 未知</p>
+                
+                
+            </div>
+
+            <p class="summary">暂无简介...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">动态漫画</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E8%81%96%E5%A5%B3%E3%81%AA%E3%81%AE%E3%81%AB%E5%9B%BD%E3%82%92%E8%BF%BD%E3%81%84%E5%87%BA%E3%81%95%E3%82%8C%E3%81%9F%E3%81%AE%E3%81%A7%E3%80%81%E5%B4%A9%E5%A3%8A%E5%AF%B8%E5%89%8D%E3%81%AE%E9%9A%A3%E5%9B%BD%E3%81%B8%E6%9D%A5%E3%81%BE%E3%81%97%E3%81%9F%20%E3%82%B7%E3%83%BC%E3%82%BA%E3%83%B32%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://renta.papy.co.jp/renta/sc/frm/page/original/c_anicomitv-seijo.htm" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/596843" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="49" 
+         data-score="4.6"
+         data-origin="漫画改"
+         data-tags="漫画改|校园|TV|日本">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/17/2e/597809_xA81Z.jpg" loading="lazy" alt="高校奇面组">
+            <div class="score-badge">★ 4.6</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="高校奇面组">
+                <span class="title-cn">高校奇面组</span>
+                <span class="title-jp">ハイスクール！奇面組</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月9日</span>
+                <span>🔥 49 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 関和亮</p>
+                <p><strong>音乐:</strong> 岩崎琢</p>
+                <p><strong>主题歌演出:</strong> BREIMEN feat. TOMOO / 離婚伝説</p>
+            </div>
+
+            <p class="summary">一応中学に通う一堂零、冷越豪、出瀬潔、大間仁、物星大の5人は、中学で留年するなど、それぞれが個性豊かでハチャメチャな性格をしており、周りからは名物集団“奇面組”として一目を置かれていた。転校生の河川唯はクラスメイトの宇留千絵と共に、“奇面組”の姿を目撃し、気になる存在として彼らと行動を共にするようになる。また、一応中学には切出翔率いる女子に人気の“色男組”、似蛭田妖率いる不良グループ“番組”、雲童塊率いるスポーツが得意な“腕組”、天野邪子率いるスケ番集団“御女組”など個性的な集団が集まっていた。出会いからあっという間に時は流れ、彼らは新しい春を迎え───。...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">校园</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E3%83%8F%E3%82%A4%E3%82%B9%E3%82%AF%E3%83%BC%E3%83%AB%EF%BC%81%E5%A5%87%E9%9D%A2%E7%B5%84%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://kimengumi.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/597809" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="34" 
+         data-score="5.5"
+         data-origin="漫画改"
+         data-tags="漫画改|TV|日本|动态漫画">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/a9/b1/601763_H5y41.jpg" loading="lazy" alt="你还是不懂群马～令和版～">
+            <div class="score-badge">★ 5.5</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="你还是不懂群马～令和版～">
+                <span class="title-cn">你还是不懂群马～令和版～</span>
+                <span class="title-jp">お前はまだグンマを知らない～令和版～</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月10日</span>
+                <span>🔥 34 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 畳谷哲也</p>
+                
+                
+            </div>
+
+            <p class="summary">あの『おまグン』が令和の世に復活――  チバ県からグンマ県に引っ越すこととなった神月。引っ越し先の移動中、グンマ県在住の親友、轟へ連絡するが、「…来るな、グンマに来て生きて帰った者はいない」と告げられてしまう。  一体グンマとはどんな地なのか？彼の身に何が降りかかろうとしているのか？圧倒的熱量で描かれる知られざる「グンマの真実」とは…...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">漫画改</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">动态漫画</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E3%81%8A%E5%89%8D%E3%81%AF%E3%81%BE%E3%81%A0%E3%82%B0%E3%83%B3%E3%83%9E%E3%82%92%E7%9F%A5%E3%82%89%E3%81%AA%E3%81%84%EF%BD%9E%E4%BB%A4%E5%92%8C%E7%89%88%EF%BD%9E%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://animationid.com/omagun/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/601763" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="3632" 
+         data-score="8.1"
+         data-origin="原创"
+         data-tags="原创|科幻|百合|日本|奇幻|音乐|WEB">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/f6/0f/604826_2XWRN.jpg" loading="lazy" alt="超时空辉夜姬！">
+            <div class="score-badge">★ 8.1</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="超时空辉夜姬！">
+                <span class="title-cn">超时空辉夜姬！</span>
+                <span class="title-jp">超かぐや姫！</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026-01-22</span>
+                <span>🔥 3632 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 山下清悟</p>
+                <p><strong>音乐:</strong> コーニッシュ</p>
+                
+            </div>
+
+            <p class="summary">夢と希望の集まる仮想空間、＜ツクヨミ＞。 少女たちの出会い、 そして別れのためのステージが、幕を開ける――  今より少しだけ先の未来。 都内の進学校に通う17歳の女子高生・酒寄彩葉は、 バイトと学業の両立に励む超絶多忙な日々を送っていた。 日々の癒やしは、インターネット上の仮想空間＜ツクヨミ＞の管理人兼大人気ライバー(配信者)・月見ヤチヨの配信を見ること。 自分の分身を作り誰もが自由に創作活動を行う＜ツクヨミ＞で、彩葉はヤチヨの推し活をしつつ、バトルゲームで細々とお小遣い稼ぎをしていた。  そんなある日の帰り道、彩葉は七色に光り輝くゲーミング電柱を見つける。 中から出てきたのは、なんとも可愛らしい赤ちゃん。 放っておけず連れ帰ると、赤ちゃんはみるみるうちに大きくなり、彩葉と同い年ぐらいの女の子に。 「あなた、もしやかぐや姫なの？」  大きくなったかぐや姫はわがまま放題。 かぐやのお願い(わがまま)で彩葉は、ツクヨミでのライバー活動を手伝うことに。 彩葉がプロデューサーとして音楽を作り、かぐやがライバーとして歌うことで、 二人は少しずつ打ち解けていく。 かぐやを月へと連れ戻す不吉な影が、すぐそこまで迫っているとも知らずに——  これは、まだ誰も見たことがをい「かぐや姫」の物語。...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">原创</span><span class="tag meta-tag">科幻</span><span class="tag meta-tag">百合</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">奇幻</span><span class="tag meta-tag">音乐</span><span class="tag meta-tag">WEB</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E8%B6%85%E3%81%8B%E3%81%90%E3%82%84%E5%A7%AB%EF%BC%81%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://www.cho-kaguyahime.com/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/604826" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="143" 
+         data-score="6.8"
+         data-origin="原创"
+         data-tags="原创|TV|日本|子供向">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/9a/85/611077_P5Pi5.jpg" loading="lazy" alt="名侦探光之美少女！">
+            <div class="score-badge">★ 6.8</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="名侦探光之美少女！">
+                <span class="title-cn">名侦探光之美少女！</span>
+                <span class="title-jp">名探偵プリキュア！</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年2月1日</span>
+                <span>🔥 143 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 未知</p>
+                <p><strong>音乐:</strong> 深澤恵梨香、馬瀬みさき</p>
+                <p><strong>主题歌演出:</strong> 石井あみ / 熊田茜音＆増井優花</p>
+            </div>
+
+            <p class="summary">【明智あんな】は、マコトミライタウンに暮らす14歳の中学２年生！ 誕生日に現れた妖精【ポチタン】と お部屋にあったペンダントに導かれて2027年から1999年のまことみらい市にタイムスリップ…！  そこで出会ったのは、名探偵に憧れている14歳の女の子【小林みくる】！   そんな中、事件発生！？ 大切なものを盗まれて困っている人がいるみたい…！ 事件は【怪盗団ファントム】のしわざ…！？ 困っている人を見逃せない…！ そんな思いから、あんなとみくるは【名探偵プリキュア】に変身!!   名探偵プリキュアがみんなの笑顔を推理で守る！ 「そのナゾ！キュアット解決！」  そして、あんなは元の時代に戻ることができるのか…！？...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">原创</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">子供向</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E5%90%8D%E6%8E%A2%E5%81%B5%E3%83%97%E3%83%AA%E3%82%AD%E3%83%A5%E3%82%A2%EF%BC%81%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://www.toei-anim.co.jp/tv/star-detective_precure/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/611077" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="277" 
+         data-score="6.7"
+         data-origin="原创"
+         data-tags="原创|日本|WEB">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/78/a4/611089_z5or8.jpg" loading="lazy" alt="棱镜恋曲">
+            <div class="score-badge">★ 6.7</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="棱镜恋曲">
+                <span class="title-cn">棱镜恋曲</span>
+                <span class="title-jp">プリズム輪舞曲</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月15日</span>
+                <span>🔥 277 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 中澤一登</p>
+                <p><strong>音乐:</strong> 千葉"naotyu-"直樹</p>
+                
+            </div>
+
+            <p class="summary">20世纪初的伦敦，一位年轻的日本女孩进入一所知名美术学院学习，与一位天赋异禀的同学展开竞争，却意外发展出一段恋情。    [简介原文] 舞台は1900年代初頭、ロンドン。画家を志す日本人の少女、一条院りり（CV：種﨑敦美）は海を越えてイギリスへ渡り、ロンドンのセント・トーマス美術学院に編入することに。初めての海外、夢の美術留学にワクワクが止まらないりりだが、実はすでに崖っぷちで、両親との約束で「半年以内に学院1位を取れないと即帰国」なのだ。編入初日からやる気に燃えるりりだが、大貴族の息子で天才画学生、そしてマイペースで若干トラブルメーカーなキット・チャーチ（CV：内山昂輝）と出会い、彼にライバル心をメラメラと燃やしていく。そして、絵にしか興味がなかったキットもまた、絵がうまくなりたいというりりの真っ直ぐで純粋な思いに共鳴し、そして――？  前向きで好奇心旺盛、おっちょこちょいなところもある留学生・りりと、完璧な画力と圧倒的な独創性を持つが生活力は皆無な大貴族・キット。絵画への愛と情熱以外の共通点が皆無な2人の関係は果たして？もうひとりの日本人留学生・新之助（CV：梶裕貴）や彼の妹のさくら（CV：鬼頭明里）や、りりの下宿仲間でもあるドロシー（CV：潘めぐみ）、キットの友人でもある優等生のピーター（CV：坂田将吾）、陽気なジョフリー（CV：阿座上洋平）、さらにはキットと婚約関係にあるキャサリン（CV：上坂すみれ）、りりの母・一条院たけ（CV：甲斐田裕子）、キットの兄・リチャード（CV：諏訪部順一）、美術学院の教授チャールズ・ブラント（CV：大塚芳忠）…といった個性豊かなキャラクターも入り混じり、プリズムのような煌めきを目指して悪戦苦闘する若者たちの姿を描く青春群像劇がまもなくスタートする。...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">原创</span><span class="tag meta-tag">日本</span><span class="tag meta-tag">WEB</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E3%83%97%E3%83%AA%E3%82%BA%E3%83%A0%E8%BC%AA%E8%88%9E%E6%9B%B2%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://www.netflix.com/jp/title/81498882" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/611089" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="13" 
+         data-score="6.1"
+         data-origin="原创"
+         data-tags="原创|TV|日本">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/80/68/615739_NBI68.jpg" loading="lazy" alt="暗芝居 第十六季">
+            <div class="score-badge">★ 6.1</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="暗芝居 第十六季">
+                <span class="title-cn">暗芝居 第十六季</span>
+                <span class="title-jp">闇芝居 十六期</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月11日</span>
+                <span>🔥 13 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 未知</p>
+                
+                
+            </div>
+
+            <p class="summary">暂无简介...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">原创</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E9%97%87%E8%8A%9D%E5%B1%85%20%E5%8D%81%E5%85%AD%E6%9C%9F%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://www.tv-tokyo.co.jp/anime/yamishibai16/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/615739" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="2" 
+         data-score="0"
+         data-origin="动画"
+         data-tags="动画|TV|日本">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/6b/5a/618661_0xpea.jpg" loading="lazy" alt="">
+            <div class="score-badge">★ 0</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="">
+                <span class="title-cn"></span>
+                <span class="title-jp">ゲルぴよ</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月21日</span>
+                <span>🔥 2 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 未知</p>
+                
+                
+            </div>
+
+            <p class="summary">謎の街、その名も「ゲルタウン」。 世界征服を企む「ゲルファクトリー」のボスチキの陰謀により トイカプセルやUFOキャッチャーに大量に放たれた、むにゅっと飛び出す奇妙な生き物たち。 その名は・・・ゲルぴよ！ どんなに潰れても、ぽよんっと復活する“アルファゲル体質”。 ゲルぴよ達が街のカルチャーや季節のイベントに巻き込まれ、 今日もゲルタウンはドタバタ大騒動！...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">动画</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E3%82%B2%E3%83%AB%E3%81%B4%E3%82%88%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="https://s.mxtv.jp/anime/gelpiyo/" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/618661" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+    <div class="card" 
+         data-wish="155" 
+         data-score="6.1"
+         data-origin="游戏改"
+         data-tags="游戏改|校园|TV|日本">
+        
+        <div class="poster-wrapper">
+            <img class="poster" src="https://lain.bgm.tv/r/400/pic/cover/l/2b/2c/618795_kS9Rt.jpg" loading="lazy" alt="学园偶像大师 Story of Re;IRIS">
+            <div class="score-badge">★ 6.1</div>
+        </div>
+
+        <div class="info">
+            <h3 class="title" title="学园偶像大师 Story of Re;IRIS">
+                <span class="title-cn">学园偶像大师 Story of Re;IRIS</span>
+                <span class="title-jp">学園アイドルマスター Story of Re;IRIS</span>
+            </h3>
+            
+            <div class="meta">
+                <span>📅 2026年1月1日</span>
+                <span>🔥 155 人想看</span>
+            </div>
+
+            <div class="staff-info">
+                <p><strong>监督:</strong> 京極尚彦</p>
+                
+                
+            </div>
+
+            <p class="summary">◤初星コミュ  TV放送決定！◢  ゲーム内の初星コミュを一部再編集した 『学園アイドルマスター Story of Re;IRIS』が TOKYO MXにて、2026年１月１日(木)にTV放送決定  ✦キャスト特別番組 ✦学園アイドルマスター Story of Re;IRIS の特別な2本立て放送です✨  キャスト特別番組は『TVer』でも配信しますよ?  アイドル養成学校である初星学園に所属する3人のアイドルとプロデューサの出会いが起こす、青春と挫折と葛藤を描いた奇跡の物語。さらに！本編の放送に追加して、出演声優による学マス入門特別番組も！物語の一挙放送と、華やかなスタジオ特番を通して、『学園アイドルマスター』の世界をたっぷり味わえる新春6時間スペシャルです。...</p>
+                <div class="tags">
+                                <span class="tag meta-tag">游戏改</span><span class="tag meta-tag">校园</span><span class="tag meta-tag">TV</span><span class="tag meta-tag">日本</span>
+                </div>
+            <div class="resource-links">
+                <a href="https://www.youtube.com/results?search_query=%E5%AD%A6%E5%9C%92%E3%82%A2%E3%82%A4%E3%83%89%E3%83%AB%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC%20Story%20of%20Re%3BIRIS%20PV%20Official%20Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
+                <a href="undefined" target="_blank" title="官方网站">🌐 官网</a>
+                <a href="https://bgm.tv/subject/618795" target="_blank" title="Bangumi 页面">📺 Bangumi</a>
+            </div>
+        </div>
+    </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = Array.from(document.querySelectorAll('.card'));
+            const originFilterBtns = document.querySelectorAll('#origin-filter .filter-btn');
+            const tagFilterBtns = document.querySelectorAll('#tag-filter .filter-btn');
+            const sortSelect = document.getElementById('sort-select');
+
+            let selectedOrigin = 'all';
+            let selectedTag = 'all';
+
+            // 统一筛选函数
+            const applyFilters = () => {
+                cards.forEach(card => {
+                    const origin = card.dataset.origin;
+                    const tags = card.dataset.tags ? card.dataset.tags.split('|') : [];
+                    
+                    const originMatch = selectedOrigin === 'all' || origin === selectedOrigin;
+                    const tagMatch = selectedTag === 'all' || tags.includes(selectedTag);
+                    
+                    card.style.display = (originMatch && tagMatch) ? 'flex' : 'none';
+                });
+            };
+
+            // Origin 筛选
+            originFilterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    originFilterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    selectedOrigin = btn.dataset.filter;
+                    applyFilters();
+                });
+            });
+
+            // Tag 筛选
+            tagFilterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tagFilterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    selectedTag = btn.dataset.filter;
+                    applyFilters();
+                });
+            });
+
+            // 排序逻辑
+            const performSort = () => {
+                const sortBy = sortSelect.value;
+                const visibleCards = cards.filter(card => card.style.display !== 'none');
+                visibleCards.sort((a, b) => {
+                    const valA = parseFloat(a.dataset[sortBy]) || 0;
+                    const valB = parseFloat(b.dataset[sortBy]) || 0;
+                    return valB - valA;
+                }).forEach((card, index) => {
+                    card.style.order = index; 
+                });
+            };
+            
+            performSort();
+            sortSelect.addEventListener('change', performSort);
+        });
+    </script>
+</body>
+</html>

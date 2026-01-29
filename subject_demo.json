@@ -1,0 +1,117 @@
+{
+  date: '2025-10-04',
+  platform: 'TV',
+  images: {
+    small: 'https://lain.bgm.tv/r/200/pic/cover/l/58/51/542203_YYfsF.jpg',
+    grid: 'https://lain.bgm.tv/r/100/pic/cover/l/58/51/542203_YYfsF.jpg',
+    large: 'https://lain.bgm.tv/pic/cover/l/58/51/542203_YYfsF.jpg',
+    medium: 'https://lain.bgm.tv/r/800/pic/cover/l/58/51/542203_YYfsF.jpg',
+    common: 'https://lain.bgm.tv/r/400/pic/cover/l/58/51/542203_YYfsF.jpg'
+  },
+  summary: '「いくぞ、ショッカー! ! ! ! 」\r\n' +
+    '40歳になっても本気で仮面ライダーになろうとしていた東島丹三郎(とうじまたんざぶろう)。だが、その夢を諦めかけた時、世間を騒がす「偽ショッカー」強盗事件に巻き込まれ…。\r\n' +
+    '『エアマスター』『ハチワンダイバー』の柴田ヨクサルが念願の「仮面ライダー」を描く 、まさに原点にして集大成! !\r\n' +
+    '大のオトナたちによる大真面目の“仮面ライダーごっこ"アクション、開幕! ! ! !',      
+  name: '東島丹三郎は仮面ライダーになりたい',
+  name_cn: '东岛丹三郎想成为假面骑士',
+  tags: [
+    { name: '2025年10月', count: 626, total_cont: 0 },
+    { name: '漫画改', count: 560, total_cont: 0 },
+    { name: '战斗', count: 504, total_cont: 0 },
+    { name: '假面骑士', count: 503, total_cont: 0 },
+    { name: 'TV', count: 428, total_cont: 0 },
+    { name: '特摄', count: 336, total_cont: 0 },
+    { name: 'LIDENFILMS', count: 306, total_cont: 0 },
+    { name: '日本', count: 263, total_cont: 0 },
+    { name: '2025', count: 238, total_cont: 0 },
+    { name: '热血', count: 237, total_cont: 0 },
+    { name: '日常', count: 226, total_cont: 0 },
+    { name: '漫改', count: 191, total_cont: 0 },
+    { name: '搞笑', count: 133, total_cont: 0 },
+    { name: '池添隆博', count: 59, total_cont: 0 },
+    { name: '日本动画', count: 36, total_cont: 0 },
+    { name: '2025年', count: 7, total_cont: 0 },
+    { name: '东岛丹三郎想成为假面骑士', count: 6, total_cont: 0 },
+    { name: '小西克幸', count: 4, total_cont: 0 },
+    { name: '喜剧', count: 3, total_cont: 0 },
+    { name: '2025秋', count: 3, total_cont: 0 },
+    { name: 'TVA', count: 3, total_cont: 0 },
+    { name: '音乐', count: 3, total_cont: 0 },
+    { name: '追番', count: 3, total_cont: 0 },
+    { name: '10月', count: 2, total_cont: 0 },
+    { name: '奇幻', count: 2, total_cont: 0 },
+    { name: '动画', count: 2, total_cont: 0 },
+    { name: '鈴村健一', count: 2, total_cont: 0 },
+    { name: '2026年1月', count: 2, total_cont: 0 },
+    { name: '茅野愛衣', count: 2, total_cont: 0 },
+    { name: '2020-2029', count: 2, total_cont: 0 }
+  ],
+  infobox: [
+    { key: '中文名', value: '东岛丹三郎想成为假面骑士' },
+    { key: '别名', value: [Array] },
+    { key: '话数', value: '24' },
+    { key: '放送开始', value: '2025年10月4日' },
+    { key: '放送星期', value: '星期六' },
+    { key: '官方网站', value: 'https://tojima-rider.com/' },
+    { key: '播放电视台', value: 'TOKYO MX / BS11 / とちぎテレビ / 群馬テレビ' },      
+    { key: '其他电视台', value: 'MBS / CBCテレビ / 北海道放送 / RKB毎日放送' },       
+    { key: '导演', value: '池添隆博' },
+    {
+      key: 'Copyright',
+      value: '©柴田ヨクサル／ヒーローズ・Tojima Rider Project©石森プロ・東映'
+    },
+    { key: '原作', value: '柴田ヨクサル（ヒーローズコミックス刊）' },
+    { key: '人物设定', value: 'Cindy H. Yamauchi（山内英子）' },
+    { key: '摄影监督', value: '高津純平；辅佐：鈴木智昭' },
+    { key: '协力', value: '石森プロ・東映' },
+    { key: '美术监督', value: '渋谷幸弘・会津綾乃；辅佐：川﨑かなえ；美术监修：佐藤勝' },
+    { key: '主动画师', value: '清水伸太郎' },
+    { key: '主题歌作词', value: 'TOPHAMHAT-KYO(FAKE TYPE.)' },
+    { key: '主题歌作曲', value: 'TeddyLoid、EMME、TOPHAMHAT-KYO(FAKE TYPE.)' },       
+    { key: '主题歌编曲', value: 'TeddyLoid、EMME、TOPHAMHAT-KYO(FAKE TYPE.)' },       
+    { key: '主题歌演出', value: 'TeddyLoid feat. Shigeru Matsuzaki（松崎しげる）' },  
+    { key: '企画', value: '岩上敦宏、Rahul Purini、木下直哉、佐藤真紀' },
+    {
+      key: '製作',
+      value: 'Aniplex（高橋祐馬）、Crunchyroll（末平アサ)、木下グループ（白井勝也）、TOKYO MX(照井健）'
+    },
+    { key: '制片人', value: '大登幹一、高橋佳那子、鈴木緑視、橋本京佳' },
+    {
+      key: '企画协力',
+      value: '岡田武士、松﨑由美子、谷池侑美、山辺浩一、後藤祐司、紀野良輔、青木翔太郎、横山和久、新妻わい、井原理恵、佐藤茂薫、月岡佑紀、佐藤顕、青山亮、伊藤光星、名取幸花、穴井健太郎'
+    },
+    { key: '录音', value: '齋藤栞；录音工作室：スタジオマウス' },
+    { key: '录音助理', value: '川和浩之' },
+    { key: '音响', value: 'スタジオマウス；音响制作担当：麻生真衣' },
+    { key: '设定协力', value: '石川健太郎' },
+    { key: '制作协力', value: 'dwarf studios（ED制作）' },
+    { key: '2D 设计', value: '向井吉秀' }
+  ],
+  rating: {
+    rank: 2446,
+    total: 1736,
+    count: {
+      '1': 9,
+      '2': 3,
+      '3': 5,
+      '4': 22,
+      '5': 91,
+      '6': 310,
+      '7': 718,
+      '8': 488,
+      '9': 55,
+      '10': 35
+    },
+    score: 7
+  },
+  total_episodes: 24,
+  collection: { on_hold: 254, dropped: 351, wish: 1314, collect: 678, doing: 5681 },  
+  id: 542203,
+  eps: 24,
+  meta_tags: [ 'TV', '日本', '漫画改', '战斗', '日常' ],
+  volumes: 0,
+  series: false,
+  locked: false,
+  nsfw: false,
+  type: 2
+}
