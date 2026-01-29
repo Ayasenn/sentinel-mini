@@ -1,0 +1,58 @@
+const fs = require('fs');
+
+const FILE_NAME = './anime_data.json';
+const UA = 'Ayasen-Anime-Sentinel/1.0'; // 规范的 User-Agent 避免被封
+
+async function updateAll() {
+    try {
+        const rawData = fs.readFileSync(FILE_NAME, 'utf8');
+        let animeList = JSON.parse(rawData);
+
+        console.log(`📡 正在为 ${animeList.length} 部番剧同步最新情报...`);
+
+        for (let i = 0; i < animeList.length; i++) {
+            let anime = animeList[i];
+            if (!anime.id) continue;
+
+            try {
+                // 使用官方 V0 接口
+                const res = await fetch(`https://api.bgm.tv/v0/subjects/${anime.id}`, {
+                    headers: { 'User-Agent': UA }
+                });
+                
+                const info = await res.json();
+
+                if (info.rating) {
+                    // 1. 更新评分
+                    anime.score = info.rating.score || 0;
+                    
+                    // 2. 更新想看人数 (wish)
+                    if (info.collection) {
+                        anime.wish = info.collection.wish || 0;
+                    }
+
+                    // 3. 自动同步最新的封面图 (防止旧图挂掉)
+                    if (info.images && info.images.common) {
+                        anime.cover = info.images.common;
+                    }
+
+                    console.log(`✅ [${i+1}/${animeList.length}] ${anime.title} | 评分: ${anime.score} | 想看: ${anime.wish}`);
+                }
+            } catch (err) {
+                console.error(`❌ ${anime.title} 更新失败:`, err.message);
+            }
+
+            // 频率控制：每秒请求 3 个左右，保护对方服务器
+            await new Promise(r => setTimeout(r, 400));
+        }
+
+        // 写入更新后的数据
+        fs.writeFileSync(FILE_NAME, JSON.stringify(animeList, null, 2));
+        console.log('\n✨ 全部数据同步完成！快去 Git Push 吧。');
+
+    } catch (error) {
+        console.error('💥 脚本运行出错:', error.message);
+    }
+}
+
+updateAll();
