@@ -24,10 +24,12 @@ jobs:
         run: node update.js # 执行你的抓取脚本
 
       - name: Commit and Push changes
-        run: |
+       run: |
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions[bot]"
-          git pull --rebase origin main # 关键：先拉取本地最新代码进行合并
           git add anime_data.json
+          # 先暂存本地修改，如果没有变化就直接退出
           git commit -m "chore: 自动更新番剧评分" || exit 0
+          # 关键顺序：先 commit 再 pull --rebase
+          git pull --rebase origin main
           git push origin main
