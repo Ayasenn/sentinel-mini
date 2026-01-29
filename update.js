@@ -46,9 +46,29 @@ async function updateAll() {
             await new Promise(r => setTimeout(r, 400));
         }
 
+        // 获取北京时间
+        const now = new Date();
+        const beijingTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Shanghai' }));
+        const lastUpdated = beijingTime.toLocaleString('zh-CN', { 
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        });
+
+        // 包装数据为对象
+        const output = {
+            lastUpdated: lastUpdated,
+            items: animeList
+        };
+
         // 写入更新后的数据
-        fs.writeFileSync(FILE_NAME, JSON.stringify(animeList, null, 2));
-        console.log('\n✨ 全部数据同步完成！快去 Git Push 吧。');
+        fs.writeFileSync(FILE_NAME, JSON.stringify(output, null, 2));
+        console.log('\n✨ 全部数据同步完成！快去 Git Push 吧。\n' +
+                    `最新更新时间：${lastUpdated}`);
 
     } catch (error) {
         console.error('💥 脚本运行出错:', error.message);

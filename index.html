@@ -48,6 +48,9 @@
 <body>
     <div class="container">
         <header>
+            <div style="font-size: 0.85rem; color: #888; margin-bottom: 8px;">
+                数据源：<a href="https://bgm.tv" target="_blank" style="color: #888; text-decoration: none;">Bangumi 番组计划</a> | 最新更新：<span id="data-update-time" style="color: #aaa;">加载中...</span>
+            </div>
             <h1>2026 年 1 月 新番导视</h1>
             <div class="header-bottom">
                 <div class="controls">
@@ -87,7 +90,14 @@
         async function loadData() {
             try {
                 const response = await fetch('./anime_data.json');
-                const data = await response.json();
+                const json = await response.json();
+                
+                // 处理新格式：{ lastUpdated, items }
+                let data = json.items || json;
+                let lastUpdated = json.lastUpdated || '未知';
+                
+                // 显示最新更新时间
+                document.getElementById('data-update-time').textContent = lastUpdated;
                 
                 // 过滤数据：airDate >= 2026-01-01 且不包含 "剧场版"
                 allAnimeData = data.filter(anime => {

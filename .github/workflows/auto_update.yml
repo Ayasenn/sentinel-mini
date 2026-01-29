@@ -1,0 +1,32 @@
+name: Auto Update Anime Scores
+
+on:
+  schedule:
+    - cron: '0 20 * * *' # 每天北京时间凌晨 4 点自动运行 (UTC 20:00)
+  workflow_dispatch:      # 允许你在 GitHub 页面上点按钮手动触发
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4 # 把你的代码拉取到云端电脑
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # 设置运行环境
+
+      - name: Install dependencies
+        run: npm install # 如果你有 package.json 就会安装依赖，没有也没关系
+
+      - name: Run update script
+        run: node update.js # 执行你的抓取脚本
+
+      - name: Commit and Push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add anime_data.json
+          git commit -m "chore: 自动更新番剧评分" || exit 0 # 如果没变化就跳过
+          git push
