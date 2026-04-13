@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>2026 年 1月 新番导视</title>
+    <title>新番导视</title>
     <link rel="stylesheet" href="style.css">
     <style>
         /* 新增控制栏样式 */
@@ -43,16 +43,74 @@
             .filter-group { gap: 5px; }
             .sort-group select { width: 100%; padding: 6px; font-size: 0.85rem; }
         }
+
+        /* 视图切换（当季 / 往期） */
+        .view { display: none; }
+        .view.active { display: block; }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 6px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: var(--card);
+            color: var(--text);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .back-btn:hover { border-color: var(--accent); transform: translateY(-1px); }
+        .back-btn span { font-size: 18px; line-height: 1; }
+
+        .archive-list {
+            display: grid;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .archive-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border-radius: 12px;
+            background: var(--card);
+            border: 1px solid #334155;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .archive-item:hover { border-color: var(--accent); transform: translateY(-1px); }
+        .archive-item .meta { color: #94a3b8; font-size: 0.95rem; }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <div style="font-size: 0.85rem; color: #888; margin-bottom: 8px;">
-                数据源：<a href="https://bgm.tv" target="_blank" style="color: #888; text-decoration: none;">Bangumi 番组计划</a> | 最新更新：<span id="data-update-time" style="color: #aaa;">加载中...</span>
+            <div class="topbar">
+                <button id="back-to-archive" class="back-btn" title="返回往期列表" style="visibility:hidden;">
+                    <span>←</span>
+                </button>
+                <div style="font-size: 0.85rem; color: #888; margin: 0;">
+                    数据源：<a href="https://bgm.tv" target="_blank" style="color: #888; text-decoration: none;">Bangumi 番组计划</a>
+                    | 最新更新：<span id="data-update-time" style="color: #aaa;">加载中...</span>
+                </div>
+                <div style="width:40px;"></div>
             </div>
-            <h1>2026 年 1 月 新番导视</h1>
-            <div class="header-bottom">
+            <h1 id="page-title">新番导视</h1>
+        </header>
+
+        <!-- 视图 A：当季导视 -->
+        <div id="season-view" class="view active">
+            <div class="header-bottom" style="display:flex; flex-direction: column; gap: 15px;">
                 <div class="controls">
                     <div>
                         <strong>出处筛选</strong>
@@ -74,49 +132,172 @@
                     </select>
                 </div>
             </div>
-        </header>
 
-        <main class="anime-grid" id="anime-grid">
-            <!-- 动态加载的卡片内容 -->
-        </main>
+            <main class="anime-grid" id="anime-grid">
+                <!-- 动态加载的卡片内容 -->
+            </main>
+        </div>
+
+        <!-- 视图 B：往期列表 -->
+        <div id="archive-view" class="view">
+            <div style="text-align:left; color:#94a3b8;">
+                选择季度进入对应的新番导视（默认进入最新一季）。
+            </div>
+            <div id="archive-list" class="archive-list"></div>
+        </div>
     </div>
 
     <script>
         let allAnimeData = [];
         let selectedOrigin = 'all';
         let selectedTag = 'all';
+        let seasonsIndex = null;
+        let currentSeasonKey = null;
+        const seasonMetaCache = new Map(); // seasonKey -> { lastUpdated }
 
-        // 从 JSON 加载数据并初始化
+        function setView(view) {
+            const seasonView = document.getElementById('season-view');
+            const archiveView = document.getElementById('archive-view');
+            const backBtn = document.getElementById('back-to-archive');
+
+            if (view === 'archive') {
+                seasonView.classList.remove('active');
+                archiveView.classList.add('active');
+                backBtn.style.visibility = 'hidden';
+                document.getElementById('page-title').textContent = '往期列表';
+                document.title = '往期列表';
+            } else {
+                archiveView.classList.remove('active');
+                seasonView.classList.add('active');
+                backBtn.style.visibility = 'visible';
+            }
+        }
+
+        function pad2(n) { return String(n).padStart(2, '0'); }
+
+        function formatSeasonTitle(seasonKey) {
+            const m = String(seasonKey || '').match(/^(\d{4})-(\d{2})$/);
+            if (!m) return '新番导视';
+            const year = m[1];
+            const month = String(Number(m[2]));
+            return `${year} 年 ${month} 月 新番导视`;
+        }
+
+        async function loadLibrary() {
+            const res = await fetch('./data/library.json');
+            if (!res.ok) throw new Error('library.json 加载失败');
+            return await res.json();
+        }
+
+        async function loadSeason(seasonKey) {
+            const res = await fetch(`./data/seasons/${seasonKey}.json`);
+            if (!res.ok) throw new Error(`season 数据加载失败: ${seasonKey}`);
+            return await res.json();
+        }
+
+        function resetFiltersUI() {
+            selectedOrigin = 'all';
+            selectedTag = 'all';
+            document.getElementById('origin-filter').innerHTML = '<button class="filter-btn active" data-filter="all">全部</button>';
+            document.getElementById('tag-filter').innerHTML = '<button class="filter-btn active" data-filter="all">全部</button>';
+        }
+
+        async function getSeasonMeta(seasonKey) {
+            if (seasonMetaCache.has(seasonKey)) return seasonMetaCache.get(seasonKey);
+            try {
+                const seasonJson = await loadSeason(seasonKey);
+                const meta = { lastUpdated: seasonJson.lastUpdated || '未知' };
+                seasonMetaCache.set(seasonKey, meta);
+                return meta;
+            } catch (e) {
+                const meta = { lastUpdated: '未知' };
+                seasonMetaCache.set(seasonKey, meta);
+                return meta;
+            }
+        }
+
+        async function renderArchiveList() {
+            const list = document.getElementById('archive-list');
+            const seasons = Array.isArray(seasonsIndex?.seasons) ? seasonsIndex.seasons.slice() : [];
+            const counts = seasonsIndex?.counts || {};
+            seasons.sort().reverse();
+
+            list.innerHTML = '<div style="color:#94a3b8;">加载往期列表中...</div>';
+
+            const metas = await Promise.all(seasons.map(async (s) => {
+                const meta = await getSeasonMeta(s);
+                return [s, meta];
+            }));
+            const metaBySeason = Object.fromEntries(metas);
+
+            list.innerHTML = seasons.map(s => {
+                const count = counts[s] ?? '-';
+                const title = formatSeasonTitle(s);
+                const lastUpdated = metaBySeason[s]?.lastUpdated || '未知';
+                return `
+                    <div class="archive-item" data-season="${s}">
+                        <div>
+                            <div style="font-weight:600; color: var(--text);">${title}</div>
+                            <div class="meta">最后更新：${lastUpdated}</div>
+                        </div>
+                        <div class="meta">${count} 部 →</div>
+                    </div>
+                `;
+            }).join('');
+
+            list.querySelectorAll('.archive-item').forEach(el => {
+                el.addEventListener('click', async () => {
+                    const season = el.dataset.season;
+                    if (!season) return;
+                    await showSeason(season);
+                });
+            });
+        }
+
+        async function showSeason(seasonKey) {
+            currentSeasonKey = seasonKey;
+            const seasonJson = await loadSeason(seasonKey);
+
+            const data = Array.isArray(seasonJson.items) ? seasonJson.items : [];
+            const lastUpdated = seasonJson.lastUpdated || '未知';
+
+            document.getElementById('data-update-time').textContent = lastUpdated;
+            document.getElementById('page-title').textContent = formatSeasonTitle(seasonKey);
+            document.title = formatSeasonTitle(seasonKey);
+
+            // 过滤数据：不包含 "剧场版"
+            allAnimeData = data.filter(anime => {
+                const hasExcludedTag = anime.metaTags && anime.metaTags.some(tag => String(tag).includes('剧场版'));
+                return !hasExcludedTag;
+            });
+
+            resetFiltersUI();
+            generateFilterButtons();
+            renderCards();
+            attachFilterListeners();
+            attachSortListener();
+            performSort();
+
+            setView('season');
+        }
+
+        // 从 JSON 加载数据并初始化（默认：当季）
         async function loadData() {
             try {
-                const response = await fetch('./anime_data.json');
-                const json = await response.json();
-                
-                // 处理新格式：{ lastUpdated, items }
-                let data = json.items || json;
-                let lastUpdated = json.lastUpdated || '未知';
-                
-                // 显示最新更新时间
-                document.getElementById('data-update-time').textContent = lastUpdated;
-                
-                // 过滤数据：airDate >= 2026-01-01 且不包含 "剧场版"
-                allAnimeData = data.filter(anime => {
-                    const airDate = anime.airDate || '';
-                    const hasExcludedTag = anime.metaTags && anime.metaTags.some(tag => tag.includes('剧场版'));
-                    return airDate >= '2026-01-01' && !hasExcludedTag;
+                seasonsIndex = await loadLibrary();
+
+                // 绑定返回按钮（回到往期列表）
+                document.getElementById('back-to-archive').addEventListener('click', () => {
+                    renderArchiveList();
+                    setView('archive');
                 });
-                
-                // 提取并生成筛选按钮
-                generateFilterButtons();
-                
-                // 渲染所有卡片
-                renderCards();
-                
-                // 绑定筛选事件
-                attachFilterListeners();
-                
-                // 绑定排序事件
-                attachSortListener();
+
+                const seasons = Array.isArray(seasonsIndex.seasons) ? seasonsIndex.seasons.slice() : [];
+                seasons.sort().reverse();
+                const latest = seasons[0];
+                if (!latest) throw new Error('library.json 中没有 seasons');
+
+                await showSeason(latest);
             } catch (error) {
                 console.error('加载数据失败:', error);
                 document.getElementById('anime-grid').innerHTML = '<p style="text-align: center; color: var(--text);">数据加载失败，请稍后重试</p>';
@@ -132,10 +313,13 @@
                 if (anime.origin) origins.add(anime.origin);
                 if (anime.metaTags) anime.metaTags.forEach(tag => tags.add(tag));
             });
+
             
             // 添加出处按钮
             const originFilter = document.getElementById('origin-filter');
             const originBtns = Array.from(origins);
+            console.log(originBtns)
+
             originBtns.forEach(origin => {
                 const btn = document.createElement('button');
                 btn.className = 'filter-btn';
@@ -168,6 +352,10 @@
                 if (anime.origin) allTags.push(anime.origin);
                 if (anime.metaTags && anime.metaTags.length) allTags.push(...anime.metaTags);
                 const uniqueTags = Array.from(new Set(allTags.filter(t => t)));
+
+                const titleCn = anime.title || '';
+                const titleOrigin = anime.originTitle || '';
+                const bangumiUrl = anime.id ? `https://bgm.tv/subject/${anime.id}` : '';
                 
                 return `
                 <div class="card" 
@@ -177,14 +365,14 @@
                      data-tags="${uniqueTags.join('|')}">
                     
                     <div class="poster-wrapper">
-                        <img class="poster" src="${anime.cover || ''}" loading="lazy" alt="${anime.titleCN || anime.title}">
+                        <img class="poster" src="${anime.cover || ''}" loading="lazy" alt="${titleCn}">
                         <div class="score-badge">★ ${anime.score || 0}</div>
                     </div>
 
                     <div class="info">
-                        <h3 class="title" title="${anime.titleCN || anime.title}">
-                            <span class="title-cn">${anime.titleCN || anime.title}</span>
-                            ${anime.titleJP ? `<span class="title-jp">${anime.titleJP}</span>` : ''}
+                        <h3 class="title" title="${titleCn}">
+                            <span class="title-cn">${titleCn}</span>
+                            ${titleOrigin ? `<span class="title-jp">${titleOrigin}</span>` : ''}
                         </h3>
                         
                         <div class="meta">
@@ -193,7 +381,8 @@
                         </div>
 
                         <div class="staff-info">
-                            ${anime.staff ? anime.staff.map(s => `<p><strong>${s.role}:</strong> ${s.name}</p>`).join('') : ''}
+                            ${anime.director ? `<p><strong>监督:</strong> ${anime.director}</p>` : ''}
+                            ${anime.studio ? `<p><strong>制作:</strong> ${anime.studio}</p>` : ''}
                         </div>
 
                         <p class="summary">${anime.summary || ''}</p>
@@ -202,9 +391,9 @@
                         </div>
                         
                         <div class="resource-links">
-                            <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(anime.titleCN || anime.title)} PV Official Trailer" target="_blank" title="搜索 PV">🎬 PV</a>
-                            ${anime.officialWebsite ? `<a href="${anime.officialWebsite}" target="_blank" title="官方网站">🌐 官网</a>` : ''}
-                            ${anime.bangumiId ? `<a href="https://bgm.tv/subject/${anime.bangumiId}" target="_blank" title="Bangumi 页面">📺 Bangumi</a>` : ''}
+                            <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(anime.pvSearchKeywords || titleOrigin || titleCn)}" target="_blank" title="搜索 PV">🎬 PV</a>
+                            ${anime.officialSite ? `<a href="${anime.officialSite}" target="_blank" title="官方网站">🌐 官网</a>` : ''}
+                            ${bangumiUrl ? `<a href="${bangumiUrl}" target="_blank" title="Bangumi 页面">📺 Bangumi</a>` : ''}
                         </div>
                     </div>
                 </div>

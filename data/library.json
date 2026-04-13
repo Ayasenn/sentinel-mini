@@ -1,0 +1,13 @@
+{
+  "lastBuiltFrom": "data/seasons/*.json",
+  "builtAt": "2026-04-09T14:16:38.152Z",
+  "seasons": [
+    "2026-01",
+    "2026-04"
+  ],
+  "counts": {
+    "2026-01": 78,
+    "2026-04": 90
+  },
+  "unknownCount": 0
+}

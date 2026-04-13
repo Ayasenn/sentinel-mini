@@ -1,11 +1,42 @@
 const fs = require('fs');
+const path = require('path');
 
-const FILE_NAME = './anime_data.json';
+const LEGACY_FILE = './anime_data.json';
 const UA = 'Ayasen-Anime-Sentinel/1.0'; // 规范的 User-Agent 避免被封
+
+function getLatestSeasonFileFromLibrary() {
+    const libraryPath = path.join(__dirname, 'data', 'library.json');
+    if (!fs.existsSync(libraryPath)) return null;
+
+    const library = JSON.parse(fs.readFileSync(libraryPath, 'utf8'));
+    const seasons = Array.isArray(library.seasons) ? library.seasons.slice() : [];
+    if (!seasons.length) return null;
+
+    // season key 形如 2026-04，字典序即可代表时间序
+    seasons.sort().reverse();
+    const latest = seasons[0];
+    return path.join(__dirname, 'data', 'seasons', `${latest}.json`);
+}
+
+function resolveTargetFile() {
+    const legacyPath = path.join(__dirname, 'anime_data.json');
+    if (fs.existsSync(legacyPath)) return legacyPath;
+
+    const latestSeasonFile = getLatestSeasonFileFromLibrary();
+    if (latestSeasonFile && fs.existsSync(latestSeasonFile)) return latestSeasonFile;
+
+    return null;
+}
 
 async function updateAll() {
     try {
-        const rawData = fs.readFileSync(FILE_NAME, 'utf8');
+        const targetFile = resolveTargetFile();
+        if (!targetFile) {
+            console.error('❌ 未找到可更新的数据文件（anime_data.json 或 data/seasons/<latest>.json）');
+            return;
+        }
+
+        const rawData = fs.readFileSync(targetFile, 'utf8');
         let json = JSON.parse(rawData);
         
         // 智能识别数据格式：如果已经包装过，提取 items；否则直接使用
@@ -75,7 +106,17 @@ async function updateAll() {
         };
 
         // 写入更新后的数据
-        fs.writeFileSync(FILE_NAME, JSON.stringify(output, null, 2));
+        // 保持原文件结构：
+        // - anime_data.json：写 { lastUpdated, items }
+        // - season 文件：保留 season 字段，并更新 lastUpdated/items
+        if (!Array.isArray(json) && json && typeof json === 'object' && json.season) {
+            json.lastUpdated = lastUpdated;
+            json.items = animeList;
+            fs.writeFileSync(targetFile, JSON.stringify(json, null, 2));
+        } else {
+            fs.writeFileSync(targetFile, JSON.stringify(output, null, 2));
+        }
+
         console.log('\n✨ 全部数据同步完成！快去 Git Push 吧。\n' +
                     `最新更新时间：${lastUpdated}`);
 
