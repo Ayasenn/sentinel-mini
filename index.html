@@ -385,8 +385,8 @@
                             ${anime.studio ? `<p><strong>制作:</strong> ${anime.studio}</p>` : ''}
                         </div>
 
-                        <p class="summary">${anime.summary || ''}</p>
-                        <div class="tags">
+                            <p class="summary" title="${anime.summary || ''}">${anime.summary || ''}</p>                       
+                             <div class="tags">
                             ${uniqueTags.map(tag => `<span class="tag meta-tag">${tag}</span>`).join('')}
                         </div>
                         
