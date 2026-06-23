@@ -10,6 +10,7 @@
 
 - 2026 年 7 月新番数据（`data/seasons/2026-07.json`）
 - `update.js` 支持按季度更新番剧信息（评分、想看数、封面），用法：`node update.js 2026-07` 或 `node update.js 26-7`
+- 增加了番剧详情卡片
 
 ### Changed
 

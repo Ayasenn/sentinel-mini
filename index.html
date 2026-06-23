@@ -17,7 +17,7 @@
         .filter-btn.active { background: var(--accent); color: var(--bg); font-weight: bold; }
         .sort-group { display: flex; align-self: flex-end; background: var(--card); padding: 15px 20px; border-radius: 12px; }
         .sort-group select { padding: 8px; background: var(--card); color: white; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; cursor: pointer; }
-        .summary { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.5; word-wrap: break-word; max-height: 3em; }
+        .summary { display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.5; word-wrap: break-word; max-height: 3em; }
         
         /* 移动端适配 */
         @media (max-width: 768px) {
@@ -90,6 +90,232 @@
         }
         .archive-item:hover { border-color: var(--accent); transform: translateY(-1px); }
         .archive-item .meta { color: #94a3b8; font-size: 0.95rem; }
+        .card { cursor: pointer; }
+
+        .detail-modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(15, 23, 42, 0.72);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+        }
+        .detail-modal.open {
+            display: flex;
+            animation: detail-fade-in 0.2s ease;
+        }
+        @keyframes detail-fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .detail-modal-panel {
+            width: min(960px, 100%);
+            max-height: min(86vh, 900px);
+            overflow-y: auto;
+            overflow-x: hidden;
+            background: var(--card);
+            border: 1px solid #334155;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .detail-modal-panel::-webkit-scrollbar {
+            display: none;
+        }
+        .detail-modal-inner {
+            display: grid;
+            grid-template-columns: 220px minmax(0, 1fr);
+            gap: 28px;
+            padding: 28px 28px 32px;
+        }
+        .detail-poster {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--bg);
+            border: 1px solid #334155;
+            align-self: start;
+            position: sticky;
+            top: 0;
+        }
+        .detail-poster img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        .detail-body {
+            min-width: 0;
+        }
+        .detail-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #334155;
+        }
+        .detail-title {
+            margin: 0;
+            font-size: clamp(22px, 2.5vw, 30px);
+            line-height: 1.35;
+            color: var(--accent);
+        }
+        .detail-subtitle {
+            margin: 6px 0 0;
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .detail-close {
+            border: none;
+            background: #334155;
+            color: #94a3b8;
+            border-radius: 8px;
+            width: 36px;
+            height: 36px;
+            font-size: 22px;
+            line-height: 1;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: 0.2s;
+        }
+        .detail-close:hover {
+            background: var(--accent);
+            color: var(--bg);
+        }
+        .detail-stat-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .detail-stat {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: var(--bg);
+            border: 1px solid #334155;
+            font-size: 0.95rem;
+        }
+        .detail-stat .detail-label {
+            display: inline;
+            margin: 0;
+            font-size: 0.85rem;
+        }
+        .detail-stat .detail-value {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        .detail-meta-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-bottom: 20px;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .detail-meta-item {
+            display: grid;
+            grid-template-columns: 110px minmax(0, 1fr);
+            gap: 12px;
+            padding: 10px 14px;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #334155;
+            border-radius: 0;
+        }
+        .detail-meta-item:last-child {
+            border-bottom: none;
+        }
+        .detail-label {
+            display: block;
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-bottom: 0;
+            flex-shrink: 0;
+        }
+        .detail-value {
+            color: #e2e8f0;
+            font-size: 0.95rem;
+            word-break: break-word;
+            line-height: 1.5;
+        }
+        .detail-value a {
+            color: #93c5fd;
+            text-decoration: none;
+        }
+        .detail-value a:hover {
+            text-decoration: underline;
+        }
+        .detail-section {
+            margin-bottom: 20px;
+        }
+        .detail-section h3 {
+            margin: 0 0 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .detail-summary {
+            margin: 0;
+            color: #cbd5e1;
+            line-height: 1.75;
+            white-space: pre-wrap;
+            font-size: 0.95rem;
+        }
+        .detail-tags,
+        .detail-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .detail-links a {
+            color: var(--text);
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 6px;
+            background: var(--bg);
+            border: 1px solid #334155;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+        .detail-links a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        body.modal-open { overflow: hidden; }
+
+        @media (max-width: 900px) {
+            .detail-modal { padding: 12px; }
+            .detail-modal-inner {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 20px;
+            }
+            .detail-poster {
+                max-width: 200px;
+                margin: 0 auto;
+                position: static;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .detail-meta-item {
+                grid-template-columns: 1fr;
+                gap: 4px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -147,8 +373,15 @@
         </div>
     </div>
 
+    <div id="detail-modal" class="detail-modal" aria-hidden="true">
+        <div class="detail-modal-panel" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+            <div id="detail-modal-content"></div>
+        </div>
+    </div>
+
     <script>
         let allAnimeData = [];
+        let currentRenderedAnime = [];
         let selectedOrigin = 'all';
         let selectedTag = 'all';
         let seasonsIndex = null;
@@ -181,6 +414,110 @@
             const year = m[1];
             const month = String(Number(m[2]));
             return `${year} 年 ${month} 月 新番导视`;
+        }
+
+        function formatValue(value, fallback = '未知') {
+            if (value === null || value === undefined || value === '') return fallback;
+            return value;
+        }
+
+        function getAnimeLinks(anime, titleCn, titleOrigin) {
+            return {
+                bangumiUrl: anime.id ? `https://bgm.tv/subject/${anime.id}` : '',
+                pvUrl: `https://www.youtube.com/results?search_query=${encodeURIComponent(anime.pvSearchKeywords || titleOrigin || titleCn)}`
+            };
+        }
+
+        function openDetailModal(anime) {
+            if (!anime) return;
+
+            const modal = document.getElementById('detail-modal');
+            const content = document.getElementById('detail-modal-content');
+            const titleCn = anime.title || anime.originTitle || '未知标题';
+            const titleOrigin = anime.originTitle || '';
+            const allTags = [];
+            if (anime.origin) allTags.push(anime.origin);
+            if (anime.metaTags && anime.metaTags.length) allTags.push(...anime.metaTags);
+            const uniqueTags = Array.from(new Set(allTags.filter(Boolean)));
+            const { bangumiUrl, pvUrl } = getAnimeLinks(anime, titleCn, titleOrigin);
+
+            content.innerHTML = `
+                <div class="detail-modal-inner">
+                    <div class="detail-poster">
+                        <img src="${anime.cover || ''}" alt="${titleCn}">
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-header">
+                            <div>
+                                <h2 id="detail-title" class="detail-title">${titleCn}</h2>
+                                ${titleOrigin ? `<p class="detail-subtitle">${titleOrigin}</p>` : ''}
+                            </div>
+                            <button id="detail-close-btn" class="detail-close" type="button" aria-label="关闭详情">×</button>
+                        </div>
+
+                        <div class="detail-stat-grid">
+                            <div class="detail-stat">
+                                <span class="detail-label">Bangumi 评分</span>
+                                <span class="detail-value">★ ${formatValue(anime.score, 0)}</span>
+                            </div>
+                            <div class="detail-stat">
+                                <span class="detail-label">想看人数</span>
+                                <span class="detail-value">${formatValue(anime.wish, 0)} 人</span>
+                            </div>
+                        </div>
+
+                        <div class="detail-meta-grid">
+                            <div class="detail-meta-item"><span class="detail-label">放送日期</span><span class="detail-value">${formatValue(anime.airDate)}</span></div>
+                            <div class="detail-meta-item"><span class="detail-label">放送星期</span><span class="detail-value">${formatValue(anime.broadcast)}</span></div>
+                            <div class="detail-meta-item"><span class="detail-label">话数</span><span class="detail-value">${formatValue(anime.episodes)}</span></div>
+                            <div class="detail-meta-item"><span class="detail-label">出处</span><span class="detail-value">${formatValue(anime.origin)}</span></div>
+                            <div class="detail-meta-item"><span class="detail-label">监督</span><span class="detail-value">${formatValue(anime.director)}</span></div>
+                            <div class="detail-meta-item"><span class="detail-label">制作</span><span class="detail-value">${formatValue(anime.studio)}</span></div>
+                            <div class="detail-meta-item"><span class="detail-label">系列构成 / 脚本</span><span class="detail-value">${formatValue(anime.script)}</span></div>
+                            <div class="detail-meta-item"><span class="detail-label">角色设计</span><span class="detail-value">${formatValue(anime.charDesign)}</span></div>
+                            <div class="detail-meta-item"><span class="detail-label">音乐</span><span class="detail-value">${formatValue(anime.music)}</span></div>
+                            <div class="detail-meta-item"><span class="detail-label">主题歌演出</span><span class="detail-value">${formatValue(anime.aniSongPerformers)}</span></div>
+                            <div class="detail-meta-item"><span class="detail-label">原作</span><span class="detail-value">${formatValue(anime.originInfo)}</span></div>
+                            <div class="detail-meta-item"><span class="detail-label">官网</span><span class="detail-value">${anime.officialSite ? `<a href="${anime.officialSite}" target="_blank" rel="noopener noreferrer">${anime.officialSite}</a>` : '未知'}</span></div>
+                        </div>
+
+                        <div class="detail-section">
+                            <h3>简介</h3>
+                            <p class="detail-summary">${formatValue(anime.summary, '暂无简介')}</p>
+                        </div>
+
+                        <div class="detail-section">
+                            <h3>标签</h3>
+                            <div class="detail-tags">
+                                ${uniqueTags.length ? uniqueTags.map(tag => `<span class="tag meta-tag">${tag}</span>`).join('') : '<span class="detail-value">暂无标签</span>'}
+                            </div>
+                        </div>
+
+                        <div class="detail-section">
+                            <h3>相关链接</h3>
+                            <div class="detail-links">
+                                <a href="${pvUrl}" target="_blank" rel="noopener noreferrer">搜索 PV</a>
+                                ${anime.officialSite ? `<a href="${anime.officialSite}" target="_blank" rel="noopener noreferrer">官方网站</a>` : ''}
+                                ${bangumiUrl ? `<a href="${bangumiUrl}" target="_blank" rel="noopener noreferrer">Bangumi 页面</a>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.add('open');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('modal-open');
+            document.getElementById('detail-close-btn').addEventListener('click', closeDetailModal);
+        }
+
+        function closeDetailModal() {
+            const modal = document.getElementById('detail-modal');
+            const content = document.getElementById('detail-modal-content');
+            modal.classList.remove('open');
+            modal.setAttribute('aria-hidden', 'true');
+            content.innerHTML = '';
+            document.body.classList.remove('modal-open');
         }
 
         function withCacheBust(url) {
@@ -324,7 +661,6 @@
             // 添加出处按钮
             const originFilter = document.getElementById('origin-filter');
             const originBtns = Array.from(origins);
-            console.log(originBtns)
 
             originBtns.forEach(origin => {
                 const btn = document.createElement('button');
@@ -351,8 +687,9 @@
         function renderCards(filtered = null) {
             const grid = document.getElementById('anime-grid');
             const dataToRender = filtered || allAnimeData;
+            currentRenderedAnime = dataToRender;
             
-            grid.innerHTML = dataToRender.map(anime => {
+            grid.innerHTML = dataToRender.map((anime, index) => {
                 // 合并 origin 和 metaTags，生成用于筛选的数据属性
                 const allTags = [];
                 if (anime.origin) allTags.push(anime.origin);
@@ -361,10 +698,11 @@
 
                 const titleCn = anime.title || '';
                 const titleOrigin = anime.originTitle || '';
-                const bangumiUrl = anime.id ? `https://bgm.tv/subject/${anime.id}` : '';
+                const { bangumiUrl, pvUrl } = getAnimeLinks(anime, titleCn, titleOrigin);
                 
                 return `
-                <div class="card" 
+                <div class="card"
+                     data-anime-index="${index}"
                      data-wish="${anime.wish || 0}" 
                      data-score="${anime.score || 0}"
                      data-origin="${anime.origin || ''}"
@@ -397,13 +735,26 @@
                         </div>
                         
                         <div class="resource-links">
-                            <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(anime.pvSearchKeywords || titleOrigin || titleCn)}" target="_blank" title="搜索 PV">🎬 PV</a>
-                            ${anime.officialSite ? `<a href="${anime.officialSite}" target="_blank" title="官方网站">🌐 官网</a>` : ''}
-                            ${bangumiUrl ? `<a href="${bangumiUrl}" target="_blank" title="Bangumi 页面">📺 Bangumi</a>` : ''}
+                            <a href="${pvUrl}" target="_blank" rel="noopener noreferrer" title="搜索 PV">🎬 PV</a>
+                            ${anime.officialSite ? `<a href="${anime.officialSite}" target="_blank" rel="noopener noreferrer" title="官方网站">🌐 官网</a>` : ''}
+                            ${bangumiUrl ? `<a href="${bangumiUrl}" target="_blank" rel="noopener noreferrer" title="Bangumi 页面">📺 Bangumi</a>` : ''}
                         </div>
                     </div>
                 </div>
             `}).join('');
+
+            grid.querySelectorAll('.card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const animeIndex = Number(card.dataset.animeIndex);
+                    openDetailModal(currentRenderedAnime[animeIndex]);
+                });
+            });
+
+            grid.querySelectorAll('.card a').forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                });
+            });
         }
 
         // 过滤逻辑
@@ -466,8 +817,26 @@
             sortSelect.addEventListener('change', performSort);
         }
 
+        function bindModalEvents() {
+            const modal = document.getElementById('detail-modal');
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    closeDetailModal();
+                }
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && modal.classList.contains('open')) {
+                    closeDetailModal();
+                }
+            });
+        }
+
         // 页面加载时执行
-        document.addEventListener('DOMContentLoaded', loadData);
+        document.addEventListener('DOMContentLoaded', () => {
+            bindModalEvents();
+            loadData();
+        });
     </script>
 </body>
 </html>
