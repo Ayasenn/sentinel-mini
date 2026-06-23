@@ -18,4 +18,5 @@
 
 ### Fixed
 
-- GitHub Actions 自动更新：修复了最新一季番剧信息自动更新脚本失效的问题 - 提交目标从 `anime_data.json` 改为 `data/seasons/*.json`，恢复每日最新一季评分同步
+- 修复了最新一季番剧信息自动更新脚本失效的问题 - 提交目标从 `anime_data.json` 改为 `data/seasons/*.json`，恢复每日最新一季评分同步
+- 修复了日期没有更新的问题 - 往期列表与季节切换时强制绕过浏览器缓存，避免 `lastUpdated` 显示旧时间

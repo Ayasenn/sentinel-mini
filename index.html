@@ -183,14 +183,19 @@
             return `${year} 年 ${month} 月 新番导视`;
         }
 
+        function withCacheBust(url) {
+            const joiner = url.includes('?') ? '&' : '?';
+            return `${url}${joiner}t=${Date.now()}`;
+        }
+
         async function loadLibrary() {
-            const res = await fetch('./data/library.json');
+            const res = await fetch(withCacheBust('./data/library.json'), { cache: 'no-store' });
             if (!res.ok) throw new Error('library.json 加载失败');
             return await res.json();
         }
 
         async function loadSeason(seasonKey) {
-            const res = await fetch(`./data/seasons/${seasonKey}.json`);
+            const res = await fetch(withCacheBust(`./data/seasons/${seasonKey}.json`), { cache: 'no-store' });
             if (!res.ok) throw new Error(`season 数据加载失败: ${seasonKey}`);
             return await res.json();
         }
@@ -217,6 +222,7 @@
         }
 
         async function renderArchiveList() {
+            seasonMetaCache.clear();
             const list = document.getElementById('archive-list');
             const seasons = Array.isArray(seasonsIndex?.seasons) ? seasonsIndex.seasons.slice() : [];
             const counts = seasonsIndex?.counts || {};
