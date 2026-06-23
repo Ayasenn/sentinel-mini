@@ -56,7 +56,7 @@ function transformToCardData(raw) {
  */
 
 // ====== 只需要改这个 ======
-const SEASON_KEY = "2026-04"; // 例如：2026-01 / 2026-04 / 2026-07 / 2026-10
+const SEASON_KEY = "2026-07"; // 例如：2026-01 / 2026-04 / 2026-07 / 2026-10
 // =========================
 
 function seasonKeyToMonthTag(seasonKey) {

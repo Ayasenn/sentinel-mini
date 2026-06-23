@@ -8,6 +8,8 @@ on:
 jobs:
   update:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4 # 把你的代码拉取到云端电脑
@@ -27,7 +29,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions[bot]"
-          git add anime_data.json
+          git add data/seasons/*.json
           # 先暂存本地修改，如果没有变化就直接退出
           git commit -m "chore: 自动更新番剧评分" || exit 0
           # 关键顺序：先 commit 再 pull --rebase

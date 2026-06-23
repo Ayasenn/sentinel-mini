@@ -1,10 +1,24 @@
+/*
+ * 更新脚本：同步指定季度番剧的评分、想看数、封面
+ *
+ * 用法：
+ *   node update.js              # 更新 library.json 中最新一季
+ *   node update.js 2026-07      # 更新指定季节
+ *   node update.js 26-7         # 简写，同上
+ *
+ * 也可在下方 SEASON_KEY 写死季节（命令行参数优先）
+ */
 const fs = require('fs');
 const path = require('path');
 
-const LEGACY_FILE = './anime_data.json';
-const UA = 'Ayasen-Anime-Sentinel/1.0'; // 规范的 User-Agent 避免被封
+// ====== 可选手动指定季节 ======
+const SEASON_KEY = null; // 例如 "2026-07"，null 表示更新最新一季
+// ============================
 
-function getLatestSeasonFileFromLibrary() {
+// const LEGACY_FILE = './anime_data.json';
+const UA = 'Ayasen-Anime-Sentinel/1.0';
+
+function getLatestSeasonKeyFromLibrary() {
     const libraryPath = path.join(__dirname, 'data', 'library.json');
     if (!fs.existsSync(libraryPath)) return null;
 
@@ -12,84 +26,100 @@ function getLatestSeasonFileFromLibrary() {
     const seasons = Array.isArray(library.seasons) ? library.seasons.slice() : [];
     if (!seasons.length) return null;
 
-    // season key 形如 2026-04，字典序即可代表时间序
     seasons.sort().reverse();
-    const latest = seasons[0];
-    return path.join(__dirname, 'data', 'seasons', `${latest}.json`);
+    return seasons[0];
 }
 
-function resolveTargetFile() {
-    const legacyPath = path.join(__dirname, 'anime_data.json');
-    if (fs.existsSync(legacyPath)) return legacyPath;
+function parseSeasonArg(arg) {
+    if (!arg) return null;
 
-    const latestSeasonFile = getLatestSeasonFileFromLibrary();
-    if (latestSeasonFile && fs.existsSync(latestSeasonFile)) return latestSeasonFile;
+    if (/^\d{4}-\d{2}$/.test(arg)) return arg;
+
+    const shorthand = String(arg).match(/^(\d{2})-(\d{1,2})$/);
+    if (shorthand) {
+        return `20${shorthand[1]}-${String(shorthand[2]).padStart(2, '0')}`;
+    }
 
     return null;
 }
 
+function resolveSeasonKey() {
+    const fromCli = parseSeasonArg(process.argv[2]);
+    if (fromCli) return fromCli;
+    if (SEASON_KEY) return SEASON_KEY;
+    return getLatestSeasonKeyFromLibrary();
+}
+
+function resolveTargetFile(seasonKey) {
+  // 旧版兼容：优先更新 anime_data.json
+  // const legacyPath = path.join(__dirname, 'anime_data.json');
+  // if (fs.existsSync(legacyPath)) return legacyPath;
+
+    if (!seasonKey) {
+        console.error('❌ 未指定季节，且 library.json 中无可用 seasons');
+        return null;
+    }
+
+    const seasonFile = path.join(__dirname, 'data', 'seasons', `${seasonKey}.json`);
+    if (!fs.existsSync(seasonFile)) {
+        console.error(`❌ 未找到季节文件: data/seasons/${seasonKey}.json`);
+        return null;
+    }
+
+    return seasonFile;
+}
+
 async function updateAll() {
     try {
-        const targetFile = resolveTargetFile();
-        if (!targetFile) {
-            console.error('❌ 未找到可更新的数据文件（anime_data.json 或 data/seasons/<latest>.json）');
-            return;
-        }
+        const seasonKey = resolveSeasonKey();
+        const targetFile = resolveTargetFile(seasonKey);
+        if (!targetFile) return;
 
         const rawData = fs.readFileSync(targetFile, 'utf8');
-        let json = JSON.parse(rawData);
-        
-        // 智能识别数据格式：如果已经包装过，提取 items；否则直接使用
-        let animeList = Array.isArray(json) ? json : (json.items || json);
-        
-        // 确保 animeList 是数组
+        const json = JSON.parse(rawData);
+        const animeList = json.items;
+
         if (!Array.isArray(animeList)) {
-            console.error('❌ 数据格式错误：无法找到番剧数组');
+            console.error('❌ 数据格式错误：season 文件缺少 items 数组');
             return;
         }
 
-        console.log(`📡 正在为 ${animeList.length} 部番剧同步最新情报...`);
+        console.log(`📡 [${seasonKey}] 正在为 ${animeList.length} 部番剧同步最新情报...`);
 
         for (let i = 0; i < animeList.length; i++) {
-            let anime = animeList[i];
+            const anime = animeList[i];
             if (!anime.id) continue;
 
             try {
-                // 使用官方 V0 接口
                 const res = await fetch(`https://api.bgm.tv/v0/subjects/${anime.id}`, {
                     headers: { 'User-Agent': UA }
                 });
-                
+
                 const info = await res.json();
 
                 if (info.rating) {
-                    // 1. 更新评分
                     anime.score = info.rating.score || 0;
-                    
-                    // 2. 更新想看人数 (wish)
+
                     if (info.collection) {
                         anime.wish = info.collection.wish || 0;
                     }
 
-                    // 3. 自动同步最新的封面图 (防止旧图挂掉)
                     if (info.images && info.images.common) {
                         anime.cover = info.images.common;
                     }
 
-                    console.log(`✅ [${i+1}/${animeList.length}] ${anime.title} | 评分: ${anime.score} | 想看: ${anime.wish}`);
+                    console.log(`✅ [${i + 1}/${animeList.length}] ${anime.title || anime.originTitle} | 评分: ${anime.score} | 想看: ${anime.wish}`);
                 }
             } catch (err) {
-                console.error(`❌ ${anime.title} 更新失败:`, err.message);
+                console.error(`❌ ${anime.title || anime.originTitle} 更新失败:`, err.message);
             }
 
-            // 频率控制：每秒请求 3 个左右，保护对方服务器
             await new Promise(r => setTimeout(r, 400));
         }
 
-        // 获取北京时间
         const now = new Date();
         const beijingTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Shanghai' }));
-        const lastUpdated = beijingTime.toLocaleString('zh-CN', { 
+        const lastUpdated = beijingTime.toLocaleString('zh-CN', {
             year: 'numeric',
             month: '2-digit',
             day: '2-digit',
@@ -99,26 +129,12 @@ async function updateAll() {
             hour12: false
         });
 
-        // 包装数据为对象
-        const output = {
-            lastUpdated: lastUpdated,
-            items: animeList
-        };
+        json.lastUpdated = lastUpdated;
+        json.items = animeList;
+        fs.writeFileSync(targetFile, JSON.stringify(json, null, 2));
 
-        // 写入更新后的数据
-        // 保持原文件结构：
-        // - anime_data.json：写 { lastUpdated, items }
-        // - season 文件：保留 season 字段，并更新 lastUpdated/items
-        if (!Array.isArray(json) && json && typeof json === 'object' && json.season) {
-            json.lastUpdated = lastUpdated;
-            json.items = animeList;
-            fs.writeFileSync(targetFile, JSON.stringify(json, null, 2));
-        } else {
-            fs.writeFileSync(targetFile, JSON.stringify(output, null, 2));
-        }
-
-        console.log('\n✨ 全部数据同步完成！快去 Git Push 吧。\n' +
-                    `最新更新时间：${lastUpdated}`);
+        console.log(`\n✨ [${seasonKey}] 全部数据同步完成！快去 Git Push 吧。`);
+        console.log(`最新更新时间：${lastUpdated}`);
 
     } catch (error) {
         console.error('💥 脚本运行出错:', error.message);
